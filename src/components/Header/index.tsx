@@ -6,15 +6,17 @@ import { Link } from "react-router-dom"
 export function Header() {
     return (
         <HeaderContainer>
-            <img src={coffeeDeliveryLogo} />
+            <Link to="/">
+                <img src={coffeeDeliveryLogo} />
+            </Link>
 
             <NavActionsContainer>
                 <span>
-                    <MapPin size={24} color="#8047F8" weight="fill"/>
+                    <MapPin size={24} color="#8047F8" weight="fill" />
                     Porto Alegre, RS
                 </span>
-                
-                <Link to="/checkout">
+
+                <Link to="/checkout" title="Carrinho">
                     <ShoppingCart size={24} color="#C47F17" weight="fill" />
                 </Link>
             </NavActionsContainer>
