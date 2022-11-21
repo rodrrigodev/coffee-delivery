@@ -86,3 +86,68 @@ export const IconDescriptionContainer = styled.div`
             border-radius: 50%;
         }
 `
+
+export const Coffees = styled.section`
+    max-width: 71.25rem;
+    width: 90%;
+    margin: 0 auto;
+
+    h2{
+        font-family: 'Baloo 2';
+        font-weight: 800;
+        font-size: 2rem;
+        color: ${props=> props.theme["base-subtitle"]};
+        line-height: 1.3;
+        margin-bottom: 3.375rem;
+    }
+`
+
+export const CoffeeCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ${props=> props.theme["base-card"]};
+    max-width: 18.75rem;
+    padding: 0 1. 25rem 25rem 25rem;
+    border-radius: .375rem 2.25rem;
+
+    img{
+        margin: -1.25rem auto .75rem auto;
+    }
+
+    #coffeeType{
+        display: flex;
+        gap: .25rem;
+
+        span{
+            background-color: ${props=> props.theme["yellow-light"]};
+            color: ${props=> props.theme["yellow-dark"]};
+            padding: .25rem .5rem;
+            border-radius: 100px;
+
+            font-weight: 700;
+            font-size: 0.625rem;
+            line-height: 1.3;
+
+        }
+        }
+
+        h3{
+            font-family: 'Baloo 2';
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: ${props=> props.theme["base-subtitle"]};
+            line-height: 1.3;
+            margin: 1rem auto .5rem auto;
+        }
+      
+        p{
+            width: 13.5rem;
+            font-size: .875rem;
+            line-height: 1.3;
+            color: ${props=> props.theme["base-label"]};
+            text-align: center;
+            margin-bottom: 2.0625rem;
+        }
+`
