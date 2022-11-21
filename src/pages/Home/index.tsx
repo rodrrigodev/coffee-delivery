@@ -1,8 +1,11 @@
+import {
+    CoffeeCard, CoffeeDescriptionContainer, Coffees, ContainerDescriptionOne,
+    ContainerDescriptionTwo, IconDescriptionContainer,
+    ImageBackground
+} from "./styles"
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react"
 import coffeeDelivery from "../../assets/coffeeDelivery.png"
-import { CoffeeDescriptionContainer, ContainerDescriptionOne,
-    ContainerDescriptionTwo, IconDescriptionContainer,
-    ImageBackground } from "./styles"
+import expressTrad from "../../assets/expressTrad.png"
 
 export function Home() {
     return (
@@ -57,6 +60,41 @@ export function Home() {
 
                 </section>
             </ImageBackground>
+
+            <Coffees>
+
+                <h2>Nossos cafés</h2>
+
+                <div>
+
+                    <CoffeeCard>
+                        <img src={expressTrad} alt="" />
+                        <div id="coffeeType">
+                            <span>Tradicional</span>
+                            <span>Gelado</span>
+                        </div>
+                        <h3>Expresso Tradicional</h3>
+                        <p>O tradicional café feito com água quente e grãos moídos</p>
+
+                        <div>
+                            <span>R$ 9,90</span>
+                            <div>
+                                <div>
+                                    <button>-</button>
+                                    <input type="number" name="" id="" />
+                                    <button>+</button>
+                                </div>
+                                <span>
+                                    <ShoppingCart size={24} />
+                                </span>
+                            </div>
+                        </div>
+                    </CoffeeCard>
+
+
+                </div>
+
+            </Coffees>
 
         </main >
     )
