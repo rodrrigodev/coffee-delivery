@@ -36,5 +36,3 @@ export const NavActionsContainer = styled.div`
         background-color: ${props=> props.theme["yellow-light"]};
     }
 `
-
-export const NavLocation = styled.a
