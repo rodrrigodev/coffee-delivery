@@ -33,6 +33,14 @@ export const NavActionsContainer = styled.div`
     }
 
     a{
+        color: ${props=> props.theme["yellow-dark"]};
         background-color: ${props=> props.theme["yellow-light"]};
+        transition: all 700ms;
+
+        &:hover{
+        background-color: ${props=> props.theme["yellow-dark"]};
+        color: ${props=> props.theme["yellow-light"]};
+        transition: all 700ms;
+        }
     }
 `

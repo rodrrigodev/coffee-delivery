@@ -1,9 +1,10 @@
 import {
     CoffeeCard, CoffeeDescriptionContainer, Coffees, ContainerDescriptionOne,
     ContainerDescriptionTwo, IconDescriptionContainer,
-    ImageBackground
+    ImageBackground,
+    PriceAndQuantity
 } from "./styles"
-import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react"
+import { Coffee, Minus, Package, Plus, ShoppingCart, Timer } from "phosphor-react"
 import coffeeDelivery from "../../assets/coffeeDelivery.png"
 import expressTrad from "../../assets/expressTrad.png"
 
@@ -76,20 +77,153 @@ export function Home() {
                         <h3>Expresso Tradicional</h3>
                         <p>O tradicional café feito com água quente e grãos moídos</p>
 
-                        <div>
-                            <span>R$ 9,90</span>
+                        <PriceAndQuantity>
+                            <span>
+                                <span>R$</span>
+                                9,90
+                            </span>
                             <div>
                                 <div>
-                                    <button>-</button>
-                                    <input type="number" name="" id="" />
-                                    <button>+</button>
+                                    <button>
+                                        <Minus size={14} />
+                                    </button>
+                                    <input type="number" placeholder="0" />
+                                    <button>
+                                        <Plus size={14} />
+                                    </button>
                                 </div>
                                 <span>
-                                    <ShoppingCart size={24} />
+                                    <ShoppingCart size={22} weight="fill" />
                                 </span>
                             </div>
-                        </div>
+                        </PriceAndQuantity>
                     </CoffeeCard>
+
+                    <CoffeeCard>
+                        <img src={expressTrad} alt="" />
+                        <div id="coffeeType">
+                            <span>Tradicional</span>
+                            <span>Gelado</span>
+                        </div>
+                        <h3>Expresso Tradicional</h3>
+                        <p>O tradicional café feito com água quente e grãos moídos</p>
+
+                        <PriceAndQuantity>
+                            <span>
+                                <span>R$</span>
+                                9,90
+                            </span>
+                            <div>
+                                <div>
+                                    <button>
+                                        <Minus size={14} />
+                                    </button>
+                                    <input type="number" placeholder="0" />
+                                    <button>
+                                        <Plus size={14} />
+                                    </button>
+                                </div>
+                                <span>
+                                    <ShoppingCart size={22} weight="fill" />
+                                </span>
+                            </div>
+                        </PriceAndQuantity>
+                    </CoffeeCard>
+
+                    <CoffeeCard>
+                        <img src={expressTrad} alt="" />
+                        <div id="coffeeType">
+                            <span>Tradicional</span>
+                            <span>Gelado</span>
+                        </div>
+                        <h3>Expresso Tradicional</h3>
+                        <p>O tradicional café feito com água quente e grãos moídos</p>
+
+                        <PriceAndQuantity>
+                            <span>
+                                <span>R$</span>
+                                9,90
+                            </span>
+                            <div>
+                                <div>
+                                    <button>
+                                        <Minus size={14} />
+                                    </button>
+                                    <input type="number" placeholder="0" />
+                                    <button>
+                                        <Plus size={14} />
+                                    </button>
+                                </div>
+                                <span>
+                                    <ShoppingCart size={22} weight="fill" />
+                                </span>
+                            </div>
+                        </PriceAndQuantity>
+                    </CoffeeCard>
+
+                    <CoffeeCard>
+                        <img src={expressTrad} alt="" />
+                        <div id="coffeeType">
+                            <span>Tradicional</span>
+                            <span>Gelado</span>
+                        </div>
+                        <h3>Expresso Tradicional</h3>
+                        <p>O tradicional café feito com água quente e grãos moídos</p>
+
+                        <PriceAndQuantity>
+                            <span>
+                                <span>R$</span>
+                                9,90
+                            </span>
+                            <div>
+                                <div>
+                                    <button>
+                                        <Minus size={14} />
+                                    </button>
+                                    <input type="number" placeholder="0" />
+                                    <button>
+                                        <Plus size={14} />
+                                    </button>
+                                </div>
+                                <span>
+                                    <ShoppingCart size={22} weight="fill" />
+                                </span>
+                            </div>
+                        </PriceAndQuantity>
+                    </CoffeeCard>
+
+                    <CoffeeCard>
+                        <img src={expressTrad} alt="" />
+                        <div id="coffeeType">
+                            <span>Tradicional</span>
+                            <span>Gelado</span>
+                        </div>
+                        <h3>Expresso Tradicional</h3>
+                        <p>O tradicional café feito com água quente e grãos moídos</p>
+
+                        <PriceAndQuantity>
+                            <span>
+                                <span>R$</span>
+                                9,90
+                            </span>
+                            <div>
+                                <div>
+                                    <button>
+                                        <Minus size={14} />
+                                    </button>
+                                    <input type="number" placeholder="0" />
+                                    <button>
+                                        <Plus size={14} />
+                                    </button>
+                                </div>
+                                <span>
+                                    <ShoppingCart size={22} weight="fill" />
+                                </span>
+                            </div>
+                        </PriceAndQuantity>
+                    </CoffeeCard>
+
+                    
 
 
                 </div>
