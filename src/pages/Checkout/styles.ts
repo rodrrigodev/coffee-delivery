@@ -50,6 +50,48 @@ export const UserInfoContainer = styled(UserAndFinishedBase)`
   }
 `
 
+export const AddressInputsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    input{
+        color: ${props=> props.theme["base-label"]};
+        background-color: ${props=> props.theme["base-input"]};
+        border: .0625rem solid ${props=> props.theme["base-button"]};
+        padding: .75rem;
+        border-radius: 4px;
+    }
+
+    div:nth-child(3){
+        display: flex;
+        gap: .75rem;
+        position: relative;
+
+        #number{
+            width: 12.5rem;
+        }
+
+        #complement{
+            flex: 1;
+        }
+
+        span{
+            font-size: .75rem;
+            line-height: 1.3;
+            font-style: italic;
+            position: absolute;
+            right: .75rem;
+            top: .90625rem;
+            text-align: center;
+        }
+    }
+
+    div:nth-child(4){
+        background-color: blue;
+    }
+`
+
 export const FinishedContainer = styled(UserAndFinishedBase)`
 
 `
