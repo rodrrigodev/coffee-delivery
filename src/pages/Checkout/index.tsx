@@ -1,21 +1,20 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Minus, Money, Plus, Trash } from "phosphor-react";
+import { CheckoutContainer, FinishedContainer, UserInfoContainer } from "./styles";
 
 export function Checkout() {
     return (
-        <main>
+        <CheckoutContainer>
             <section>
                 <h2>Complete o seu pedido</h2>
 
-
-                <div>
-                    <div>
+                <UserInfoContainer>
+                    <div id="AddressTitle">
                         <span>
-                            <MapPinLine size={24} />
+                            <MapPinLine size={22} />
                         </span>
                         <div>
                             <span>Endereço de Entrega</span>
                             <p>Informe o endereço onde deseja receber seu pedido</p>
-
                         </div>
                     </div>
 
@@ -75,13 +74,13 @@ export function Checkout() {
 
                         </div>
                     </div>
-                </div>
+                </UserInfoContainer>
             </section>
 
             <section>
                 <h2>Cafés Selecionados</h2>
 
-                <div>
+                <FinishedContainer>
 
                     <div>
                         <img src="" alt="" />
@@ -128,9 +127,9 @@ export function Checkout() {
 
                         <button type="submit">Confirmar Pedido</button>
 
-                </div>
+                </FinishedContainer>
 
             </section>
-        </main>
+        </CheckoutContainer>
     )
 }
