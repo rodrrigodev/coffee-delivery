@@ -1,10 +1,5 @@
-import {
-    CoffeeCard, CoffeeDescriptionContainer, Coffees, ContainerDescriptionOne,
-    ContainerDescriptionTwo, IconDescriptionContainer,
-    ImageBackground,
-    PriceAndQuantity
-} from "./styles"
 import { Coffee, Minus, Package, Plus, ShoppingCart, Timer } from "phosphor-react"
+import { Background, CoffeeCard, CoffeeDescription, CoffeesContainer, IconDescriptions, CoffeeCardContainer, PriceAndAmount, PlusOrMinus } from "./styles"
 import coffeeDelivery from "../../assets/coffeeDelivery.png"
 import expressTrad from "../../assets/expressTrad.png"
 
@@ -12,224 +7,246 @@ export function Home() {
     return (
         <main>
 
-            <ImageBackground>
-                <section>
+            <Background>
 
-                    <CoffeeDescriptionContainer>
-                        <ContainerDescriptionOne>
-                            <h1>Encontre o café perfeito<br />para qualquer hora do dia</h1>
-                            <p>Com o Coffee Delivery você recebe seu café onde estiver, a<br />qualquer hora</p>
-                        </ContainerDescriptionOne>
+                <CoffeeDescription>
+                    <section>
+                        <div>
+                            <strong>Encontre o café perfeito para qualquer hora do dia</strong>
+                            <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
+                        </div>
 
-                        <ContainerDescriptionTwo>
+                        <IconDescriptions>
                             <div>
+                                <span>
+                                    <ShoppingCart size={22} id="ShoppingCart" />
+                                    Compra simples e segura
+                                </span>
 
-                                <IconDescriptionContainer>
-                                    <span>
-                                        <ShoppingCart size={24} id="ShoppingCart" weight="fill" />
-                                    </span>
-                                    <span>Compra simples e segura</span>
-                                </IconDescriptionContainer>
-
-                                <IconDescriptionContainer>
-                                    <span>
-                                        <Timer size={24} id="Timer" weight="fill" />
-                                    </span>
-                                    <span>Entrega rápida e rastreada</span>
-                                </IconDescriptionContainer>
+                                <span>
+                                    <Timer size={22} id="Timer" />
+                                    Entrega rápida e rastreada
+                                </span>
                             </div>
 
                             <div>
-                                <IconDescriptionContainer>
-                                    <span>
-                                        <Package size={24} id="Package" weight="fill" />
-                                    </span>
-                                    <span>Embalagem mantém o café intacto</span>
-                                </IconDescriptionContainer>
+                                <span>
+                                    <Package size={22} id="Package" />
+                                    Embalagem mantém o café intacto
+                                </span>
 
-                                <IconDescriptionContainer>
-                                    <span>
-                                        <Coffee size={24} id="Coffee" weight="fill" />
-                                    </span>
-                                    <span>O café chega fresquinho até você</span>
-                                </IconDescriptionContainer>
+                                <span>
+                                    <Coffee size={22} id="Coffee" />
+                                    O café chega fresquinho até você
+                                </span>
                             </div>
-                        </ContainerDescriptionTwo>
-                    </CoffeeDescriptionContainer>
+                        </IconDescriptions>
 
-                    <img src={coffeeDelivery} alt="" />
+                    </section>
 
-                </section>
-            </ImageBackground>
+                    <div>
+                        <img src={coffeeDelivery} alt="" />
+                    </div>
+                </CoffeeDescription>
 
-            <Coffees>
+            </Background>
+
+            <CoffeesContainer>
 
                 <h2>Nossos cafés</h2>
 
-                <div>
+                <CoffeeCardContainer>
 
                     <CoffeeCard>
-                        <img src={expressTrad} alt="" />
-                        <div id="coffeeType">
-                            <span>Tradicional</span>
-                            <span>Gelado</span>
+                        <div>
+                            <img src={expressTrad} alt="" />
                         </div>
+                        <div>
+                            <span>Tradicional</span>
+                            <span>Tradicional</span>
+                        </div>
+
                         <h3>Expresso Tradicional</h3>
                         <p>O tradicional café feito com água quente e grãos moídos</p>
 
-                        <PriceAndQuantity>
-                            <span>
-                                <span>R$</span>
-                                9,90
-                            </span>
+                        <PriceAndAmount>
+                            <span>9,90</span>
                             <div>
-                                <div>
+                                <PlusOrMinus>
                                     <button>
-                                        <Minus size={14} />
+                                        <Minus size={22} />
                                     </button>
-                                    <input type="number" placeholder="0" />
+                                    <input type="number" name="" id="" placeholder="0" />
                                     <button>
-                                        <Plus size={14} />
+                                        <Plus size={22} />
                                     </button>
-                                </div>
+                                </PlusOrMinus>
                                 <span>
                                     <ShoppingCart size={22} weight="fill" />
                                 </span>
                             </div>
-                        </PriceAndQuantity>
+                        </PriceAndAmount>
                     </CoffeeCard>
 
                     <CoffeeCard>
-                        <img src={expressTrad} alt="" />
-                        <div id="coffeeType">
-                            <span>Tradicional</span>
-                            <span>Gelado</span>
+                        <div>
+                            <img src={expressTrad} alt="" />
                         </div>
+                        <div>
+                            <span>Tradicional</span>
+                            <span>Tradicional</span>
+                        </div>
+
                         <h3>Expresso Tradicional</h3>
                         <p>O tradicional café feito com água quente e grãos moídos</p>
 
-                        <PriceAndQuantity>
-                            <span>
-                                <span>R$</span>
-                                9,90
-                            </span>
+                        <PriceAndAmount>
+                            <span>9,90</span>
                             <div>
-                                <div>
+                                <PlusOrMinus>
                                     <button>
-                                        <Minus size={14} />
+                                        <Minus size={22} />
                                     </button>
-                                    <input type="number" placeholder="0" />
+                                    <input type="number" name="" id="" placeholder="0" />
                                     <button>
-                                        <Plus size={14} />
+                                        <Plus size={22} />
                                     </button>
-                                </div>
+                                </PlusOrMinus>
                                 <span>
                                     <ShoppingCart size={22} weight="fill" />
                                 </span>
                             </div>
-                        </PriceAndQuantity>
+                        </PriceAndAmount>
                     </CoffeeCard>
 
                     <CoffeeCard>
-                        <img src={expressTrad} alt="" />
-                        <div id="coffeeType">
-                            <span>Tradicional</span>
-                            <span>Gelado</span>
+                        <div>
+                            <img src={expressTrad} alt="" />
                         </div>
+                        <div>
+                            <span>Tradicional</span>
+                            <span>Tradicional</span>
+                        </div>
+
                         <h3>Expresso Tradicional</h3>
                         <p>O tradicional café feito com água quente e grãos moídos</p>
 
-                        <PriceAndQuantity>
-                            <span>
-                                <span>R$</span>
-                                9,90
-                            </span>
+                        <PriceAndAmount>
+                            <span>9,90</span>
                             <div>
-                                <div>
+                                <PlusOrMinus>
                                     <button>
-                                        <Minus size={14} />
+                                        <Minus size={22} />
                                     </button>
-                                    <input type="number" placeholder="0" />
+                                    <input type="number" name="" id="" placeholder="0" />
                                     <button>
-                                        <Plus size={14} />
+                                        <Plus size={22} />
                                     </button>
-                                </div>
+                                </PlusOrMinus>
                                 <span>
                                     <ShoppingCart size={22} weight="fill" />
                                 </span>
                             </div>
-                        </PriceAndQuantity>
+                        </PriceAndAmount>
                     </CoffeeCard>
 
                     <CoffeeCard>
-                        <img src={expressTrad} alt="" />
-                        <div id="coffeeType">
-                            <span>Tradicional</span>
-                            <span>Gelado</span>
+                        <div>
+                            <img src={expressTrad} alt="" />
                         </div>
+                        <div>
+                            <span>Tradicional</span>
+                            <span>Tradicional</span>
+                        </div>
+
                         <h3>Expresso Tradicional</h3>
                         <p>O tradicional café feito com água quente e grãos moídos</p>
 
-                        <PriceAndQuantity>
-                            <span>
-                                <span>R$</span>
-                                9,90
-                            </span>
+                        <PriceAndAmount>
+                            <span>9,90</span>
                             <div>
-                                <div>
+                                <PlusOrMinus>
                                     <button>
-                                        <Minus size={14} />
+                                        <Minus size={22} />
                                     </button>
-                                    <input type="number" placeholder="0" />
+                                    <input type="number" name="" id="" placeholder="0" />
                                     <button>
-                                        <Plus size={14} />
+                                        <Plus size={22} />
                                     </button>
-                                </div>
+                                </PlusOrMinus>
                                 <span>
                                     <ShoppingCart size={22} weight="fill" />
                                 </span>
                             </div>
-                        </PriceAndQuantity>
+                        </PriceAndAmount>
                     </CoffeeCard>
 
                     <CoffeeCard>
-                        <img src={expressTrad} alt="" />
-                        <div id="coffeeType">
-                            <span>Tradicional</span>
-                            <span>Gelado</span>
+                        <div>
+                            <img src={expressTrad} alt="" />
                         </div>
+                        <div>
+                            <span>Tradicional</span>
+                            <span>Tradicional</span>
+                        </div>
+
                         <h3>Expresso Tradicional</h3>
                         <p>O tradicional café feito com água quente e grãos moídos</p>
 
-                        <PriceAndQuantity>
-                            <span>
-                                <span>R$</span>
-                                9,90
-                            </span>
+                        <PriceAndAmount>
+                            <span>9,90</span>
                             <div>
-                                <div>
+                                <PlusOrMinus>
                                     <button>
-                                        <Minus size={14} />
+                                        <Minus size={22} />
                                     </button>
-                                    <input type="number" placeholder="0" />
+                                    <input type="number" name="" id="" placeholder="0" />
                                     <button>
-                                        <Plus size={14} />
+                                        <Plus size={22} />
                                     </button>
-                                </div>
+                                </PlusOrMinus>
                                 <span>
                                     <ShoppingCart size={22} weight="fill" />
                                 </span>
                             </div>
-                        </PriceAndQuantity>
+                        </PriceAndAmount>
                     </CoffeeCard>
 
-                    
+                    <CoffeeCard>
+                        <div>
+                            <img src={expressTrad} alt="" />
+                        </div>
+                        <div>
+                            <span>Tradicional</span>
+                            <span>Tradicional</span>
+                        </div>
 
+                        <h3>Expresso Tradicional</h3>
+                        <p>O tradicional café feito com água quente e grãos moídos</p>
 
-                </div>
+                        <PriceAndAmount>
+                            <span>9,90</span>
+                            <div>
+                                <PlusOrMinus>
+                                    <button>
+                                        <Minus size={22} />
+                                    </button>
+                                    <input type="number" name="" id="" placeholder="0" />
+                                    <button>
+                                        <Plus size={22} />
+                                    </button>
+                                </PlusOrMinus>
+                                <span>
+                                    <ShoppingCart size={22} weight="fill" />
+                                </span>
+                            </div>
+                        </PriceAndAmount>
+                    </CoffeeCard>
 
-            </Coffees>
+                </CoffeeCardContainer>
 
-        </main >
+            </CoffeesContainer>
+
+        </main>
     )
 }

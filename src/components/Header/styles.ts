@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-    max-width: 71.25rem;
+    max-width: 72rem;
     width: 90%;
     margin: 2rem auto;
 
@@ -11,36 +11,39 @@ export const HeaderContainer = styled.header`
 `
 
 export const NavActionsContainer = styled.div`
+   display: flex;
+   gap: .75rem;
+   /* align-items: center; */
+   /* justify-content: center; */
+
+   span, a{
     display: flex;
-    gap: .75rem;
-    /* align-items: center;
-    justify-content: center; */
-
-    span, a{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        font-size: .875rem;
-        line-height: 1.3;
-        padding: .5rem;
-        border-radius: 6px;
-    }
+    align-items: center;
+    gap: .25rem;
+    padding: .5rem;
+    border-radius: 6px;
+}
 
     span{
-        color: ${props=> props.theme["purple-dark"]};
         background-color: ${props=> props.theme["purple-light"]};
-    }
+        color: ${props=> props.theme["purple-dark"]};
+        font-size: .875rem;
+        line-height: 1.3;
+
+        #MapPin{
+            color: ${props=> props.theme["purple"]};
+        }
+}
 
     a{
-        color: ${props=> props.theme["yellow-dark"]};
         background-color: ${props=> props.theme["yellow-light"]};
-        transition: all 700ms;
+        color: ${props=> props.theme["yellow-dark"]};
+        transition: all 500ms;
 
         &:hover{
-        background-color: ${props=> props.theme["yellow-dark"]};
-        color: ${props=> props.theme["yellow-light"]};
-        transition: all 700ms;
+            background-color: ${props=> props.theme["yellow-dark"]};
+            color: ${props=> props.theme["white"]};
+            transition: all 500ms;
         }
     }
 `
