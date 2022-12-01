@@ -16,7 +16,7 @@ export const CheckoutContainer = styled(containerPatternSizeBase)`
 `
 
 const ContainerCardBase = styled.div`
-    background-color: ${props=> props.theme["base-card"]};
+    background-color: ${props => props.theme["base-card"]};
     padding: 2.5rem;
 `
 
@@ -37,25 +37,25 @@ const addressAndPaymentBase = styled.div`
     h3{
         font-weight: 400;
         line-height: 1.3;
-        color: ${props=> props.theme["base-subtitle"]}
+        color: ${props => props.theme["base-subtitle"]}
     }
 
     p{
         font-size: .875rem;
         font-weight: 400;
         line-height: 1.3;
-        color: ${props=> props.theme["base-text"]}
+        color: ${props => props.theme["base-text"]}
     }
 `
 
 export const AddressTitleContainer = styled(addressAndPaymentBase)`
     span{
-        color: ${props=> props.theme["yellow-dark"]}
+        color: ${props => props.theme["yellow-dark"]}
     }
 `
 export const PaymentTitleContainer = styled(addressAndPaymentBase)`
     span{
-        color: ${props=> props.theme["purple"]}
+        color: ${props => props.theme["purple"]}
     }
 `
 
@@ -80,18 +80,24 @@ export const InputDivContainer = styled.div`
         right: .75rem;
         top: .8125rem;
         font-size: .75rem;
-        color: ${props=> props.theme["base-label"]};
+        color: ${props => props.theme["base-label"]};
     }
 `
 
 const inputBase = styled.input`
     font-size: .875rem;
     line-height: 1.3;
-    color: ${props=> props.theme["base-label"]};
-    background-color: ${props=> props.theme["base-input"]};
-    border: 1px solid ${props=> props.theme["base-button"]};
+    color: ${props => props.theme["base-label"]};
+    background-color: ${props => props.theme["base-input"]};
+    border: 1px solid ${props => props.theme["base-button"]};
     padding: .75rem;
     border-radius: 4px;
+
+    &:focus{
+        box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-dark']};
+    }
+
+
 `
 
 export const InputCity = styled(inputBase)`
@@ -114,19 +120,19 @@ export const InputUf = styled(inputBase)`
     width: 3.75rem;
 `
 
-export const PaymentType =  styled.div`
+export const PaymentType = styled.div`
     display: flex;
     gap: .75rem;
     
    div{
         padding: 1rem;
-        background-color: ${props=> props.theme["base-button"]};
+        background-color: ${props => props.theme["base-button"]};
         border-radius: 6px;
 
 }
 
     #CreditCard, #Bank, #Money{
-        color: ${props=> props.theme["purple"]};
+        color: ${props => props.theme["purple"]};
     }
 
     span{
@@ -143,7 +149,7 @@ export const CoffeeOrderContainer = styled.div`
     display: flex;
     padding: .25rem .25rem 2rem .25rem;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid ${props=> props.theme["base-button"]};
+    border-bottom: 1px solid ${props => props.theme["base-button"]};
 
     img{
         width: 4rem;
@@ -173,9 +179,73 @@ export const ButtonAndTitleContainer = styled.div`
             align-items: center;
             gap: .25rem;
             padding: .5rem;
-            color: ${props=> props.theme["base-text"]};
-            background-color: ${props=> props.theme["base-button"]};
+            color: ${props => props.theme["base-text"]};
+            background-color: ${props => props.theme["base-button"]};
             border-radius: 6px;
+            transition: all 500ms;
+
+            &:hover{
+                color: ${props => props.theme["base-subtitle"]};
+                background-color: ${props => props.theme["base-hover"]};
+                transition: all 500ms;
+
+                #Trash{
+                color: ${props => props.theme["purple-dark"]};
+                transition: all 500ms;
+            }
+            }
+
+            #Trash{
+                color: ${props => props.theme["purple"]};
+                transition: all 500ms;
+            }
         }
     }
+`
+
+export const CoffeePrice = styled.span`
+    font-weight: 700;
+    line-height: 1.3;
+    color: ${props => props.theme["base-text"]};
+`
+
+export const PriceItensTotalContainer = styled.div`
+    div{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: .75rem;
+
+    span{
+        font-size: .875rem;
+        color: ${props => props.theme["base-text"]};
+        line-height: 1.3;
+    }
+
+}
+
+    button{
+        font-size: .875rem;
+        font-weight: 700;
+        line-height: 1.6;
+        text-transform: uppercase;
+        border-radius: 6px;
+        border: 0;
+        color: ${props => props.theme["white"]};
+        background-color: ${props => props.theme["yellow"]};
+        padding: .75rem 0;
+        width: 100%;
+        transition: all 500ms;
+
+        &:hover{
+            background-color: ${props => props.theme["yellow-dark"]};
+            transition: all 500ms;
+        }
+}
+`
+
+export const FinalPrice = styled.span`
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: ${props => props.theme["base-subtitle"]};
 `
