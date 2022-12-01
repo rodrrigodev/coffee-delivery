@@ -15,6 +15,7 @@ body{
     background-color: ${(porps) => porps.theme['background']};
     color: ${(porps) => porps.theme['base-text']};
     -webkit-font-smoothing: antialiased;
+    overflow-y: scroll;
 }
 
 body, input, textarea, button{

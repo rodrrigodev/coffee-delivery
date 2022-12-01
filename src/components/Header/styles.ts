@@ -13,8 +13,6 @@ export const HeaderContainer = styled.header`
 export const NavActionsContainer = styled.div`
    display: flex;
    gap: .75rem;
-   /* align-items: center; */
-   /* justify-content: center; */
 
    span, a{
     display: flex;

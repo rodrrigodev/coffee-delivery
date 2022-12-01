@@ -8,7 +8,10 @@ import { AddressTitleContainer, BackgroundCardCollor,
     PaymentTitleContainer, 
     PaymentType,
     CoffeeOrderContainer,
-    ButtonAndTitleContainer} from "./styles";
+    ButtonAndTitleContainer,
+    CoffeePrice,
+    PriceItensTotalContainer,
+    FinalPrice} from "./styles";
 
 export function Checkout() {
     return (
@@ -107,21 +110,21 @@ export function Checkout() {
                                     <div>
                                         <PlusOrMinus>
                                             <button>
-                                                <Minus size={22} />
+                                                <Minus size={18} />
                                             </button>
                                             <input type="number" name="" id="" placeholder="0" />
                                             <button>
-                                                <Plus size={22} />
+                                                <Plus size={18} />
                                             </button>
                                         </PlusOrMinus>
 
                                         <span>
-                                            <Trash size={22} />
+                                            <Trash size={18} id="Trash" />
                                             Remover
                                         </span>
                                     </div>
                                 </ButtonAndTitleContainer>
-                                <span>R$ 9,10</span>
+                                <CoffeePrice>R$ 9,10</CoffeePrice>
                             </CoffeeOrderContainer>
 
                             <CoffeeOrderContainer>
@@ -133,23 +136,24 @@ export function Checkout() {
                                     <div>
                                         <PlusOrMinus>
                                             <button>
-                                                <Minus size={22} />
+                                                <Minus size={18} />
                                             </button>
                                             <input type="number" name="" id="" placeholder="0" />
                                             <button>
-                                                <Plus size={22} />
+                                                <Plus size={18} />
                                             </button>
                                         </PlusOrMinus>
 
                                         <span>
-                                            <Trash size={22} />
+                                            <Trash size={18} id="Trash" />
                                             Remover
                                         </span>
                                     </div>
                                 </ButtonAndTitleContainer>
-                                <span>R$ 9,10</span>
+                                <CoffeePrice>R$ 9,10</CoffeePrice>
                             </CoffeeOrderContainer>
 
+                            <PriceItensTotalContainer>
                             <div>
                                 <span>Total de itens</span>
                                 <span>R$ 9,00</span>
@@ -161,11 +165,12 @@ export function Checkout() {
                             </div>
 
                             <div>
-                                <span>Total</span>
-                                <span>R$ 9,00</span>
+                                <FinalPrice>Total</FinalPrice>
+                                <FinalPrice>R$ 9,00</FinalPrice>
                             </div>
 
                             <button>Confirmar pedido</button>
+                            </PriceItensTotalContainer>
 
                         </ConfirmOrder>
 
