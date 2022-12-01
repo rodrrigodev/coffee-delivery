@@ -1,138 +1,179 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Minus, Money, Plus, Trash } from "phosphor-react";
-import { AddressInputsContainer, CheckoutContainer, FinishedContainer, UserInfoContainer } from "./styles";
+import expressTra from "../../assets/expressTrad.png"
+import { PlusOrMinus } from "../Home/styles";
+import { AddressTitleContainer, BackgroundCardCollor,
+    CheckoutContainer, ConfirmOrder, InputCity,
+    InputCloplement, InputContainer, InputDivContainer,
+    InputCepNumberDistrict, InputStreet, InputUf,
+    PaymentTitleContainer, 
+    PaymentType,
+    CoffeeOrderContainer,
+    ButtonAndTitleContainer} from "./styles";
 
 export function Checkout() {
     return (
-        <CheckoutContainer>
-            <section>
-                <h2>Complete o seu pedido</h2>
+        <main>
+            <form action="">
 
-                <UserInfoContainer>
-                    <div id="AddressTitle">
-                        <span>
-                            <MapPinLine size={22} />
-                        </span>
-                        <div>
-                            <span>Endereço de Entrega</span>
-                            <p>Informe o endereço onde deseja receber seu pedido</p>
-                        </div>
-                    </div>
+                <CheckoutContainer>
 
-                    <form action="">
-                        <AddressInputsContainer>
-                            <input type="number" id="zipCode" placeholder="CEP" />
-                            <input type="text" id="street" placeholder="Rua" />
-
-                            <div>
-                                <input type="number" id="number" placeholder="Número" />
-                                <input type="text" id="complement" placeholder="Complemento" />
-                                <span>Opcional</span>
-                            </div>
-
-                            <div>
-                                <input type="text" id="district" placeholder="Bairro" />
-                                <input type="text" id="city" placeholder="Cidade" />
-                                <input type="text" id="uf" placeholder="UF" />
-                            </div>
-
-                        </AddressInputsContainer>
-
-                        <div>
-                            <div>
+                    <div>
+                        <h2>Complete seu pedido</h2>
+                        <BackgroundCardCollor>
+                            <AddressTitleContainer>
                                 <span>
-                                    <CurrencyDollar size={24} />
+                                    <MapPinLine size={22} />
                                 </span>
                                 <div>
-                                    <span>Pagamento</span>
+                                    <h3>Endereço de Entrega</h3>
+                                    <p>Informe o endereço onde deseja receber seu pedido</p>
+                                </div>
+                            </AddressTitleContainer>
+
+                            <InputContainer>
+                                <InputCepNumberDistrict type="number" name="" id="" placeholder="CEP" />
+                                <InputStreet type="text" name="" id="" placeholder="Rua" />
+
+                                <InputDivContainer>
+                                    <InputCepNumberDistrict type="number" name="" id="" placeholder="Número" />
+                                    <div>
+                                    <InputCloplement type="text" name="" id="" placeholder="Complemento" />
+                                        <span>Opcional</span>
+                                    </div>
+                                </InputDivContainer>
+
+                                <InputDivContainer>
+                                    <InputCepNumberDistrict type="text" name="" id="" placeholder="Bairro" />
+                                    <InputCity type="text" name="" id="" placeholder="Cidade" />
+                                    <InputUf type="text" name="" id="" placeholder="UF" />
+                                </InputDivContainer>
+
+                            </InputContainer>
+
+                        </BackgroundCardCollor>
+
+                        <BackgroundCardCollor>
+                            <PaymentTitleContainer>
+                                <span>
+                                    <CurrencyDollar size={22} />
+                                </span>
+                                <div>
+                                    <h3>Pagamento</h3>
                                     <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
-
                                 </div>
-                            </div>
+                            </PaymentTitleContainer>
 
-                            <div>
+                            <PaymentType>
                                 <div>
                                     <span>
-                                        <CreditCard size={24} />
+                                        <CreditCard size={22} id="CreditCard" />
+                                        Cartão de crédito
                                     </span>
-                                    <input type="radio" name="" id="" />
-                                    <label htmlFor="">Cartão de crédito</label>
-                                </div>
-
-                                <div>
-                                    <span>
-                                        <Bank size={24} />
-                                    </span>
-                                    <input type="radio" name="" id="" />
-                                    <label htmlFor="">Cartão de Débito</label>
+                                    {/* <input type="radio" id="creditCart" name="paymentMethod" value="creditCart" /> */}
                                 </div>
 
                                 <div>
                                     <span>
-                                        <Money size={24} />
+                                        <Bank size={22} id="Bank" />
+                                        Cartão de débito
                                     </span>
-                                    <input type="radio" name="" id="" />
-                                    <label htmlFor="">Dinheiro</label>
+                                    {/* <input type="radio" id="debitCard" name="paymentMethod" value="debitCard" /> */}
                                 </div>
 
-                            </div>
-                        </div>
-                    </form>
-                </UserInfoContainer>
-            </section>
-
-            <section>
-                <h2>Cafés Selecionados</h2>
-
-                <FinishedContainer>
-
-                    <div>
-                        <img src="" alt="" />
-
-                        <div>
-                            <span>Expresso Tradicional</span>
-                            <div>
                                 <div>
-                                    <button>
-                                        <Minus size={14} />
-                                    </button>
-                                    <input type="number" placeholder="0" />
-                                    <button>
-                                        <Plus size={14} />
-                                    </button>
+                                    <span>
+                                        <Money size={22} id="Money" />
+                                        Dinheiro
+                                    </span>
+                                    {/* <input type="radio" id="money" name="paymentMethod" value="money" /> */}
                                 </div>
-                                <span>
-                                    <Trash size={14} />
-                                    Remover
-                                </span>
-                            </div>
-                        </div>
+                            </PaymentType>
+                        </BackgroundCardCollor>
 
-                        <span>R$ 10,00</span>
                     </div>
 
                     <div>
 
-                        <div>
-                            <span>Total de itens</span>
-                            <span>R$ 28,00</span>
-                        </div>
+                        <h2>Cafés Selecionados</h2>
 
-                        <div>
-                            <span>Entrega</span>
-                            <span>R$ 3,00</span>
-                        </div>
+                        <ConfirmOrder>
 
-                        <div>
-                            <span>Total</span>
-                            <span>R$ 45,00</span>
-                        </div>
+                            <CoffeeOrderContainer>
+                                <img src={expressTra} alt="" />
+
+                                <ButtonAndTitleContainer>
+                                    <h3>Expresso Tradicional</h3>
+
+                                    <div>
+                                        <PlusOrMinus>
+                                            <button>
+                                                <Minus size={22} />
+                                            </button>
+                                            <input type="number" name="" id="" placeholder="0" />
+                                            <button>
+                                                <Plus size={22} />
+                                            </button>
+                                        </PlusOrMinus>
+
+                                        <span>
+                                            <Trash size={22} />
+                                            Remover
+                                        </span>
+                                    </div>
+                                </ButtonAndTitleContainer>
+                                <span>R$ 9,10</span>
+                            </CoffeeOrderContainer>
+
+                            <CoffeeOrderContainer>
+                                <img src={expressTra} alt="" />
+
+                                <ButtonAndTitleContainer>
+                                    <h3>Expresso Tradicional</h3>
+
+                                    <div>
+                                        <PlusOrMinus>
+                                            <button>
+                                                <Minus size={22} />
+                                            </button>
+                                            <input type="number" name="" id="" placeholder="0" />
+                                            <button>
+                                                <Plus size={22} />
+                                            </button>
+                                        </PlusOrMinus>
+
+                                        <span>
+                                            <Trash size={22} />
+                                            Remover
+                                        </span>
+                                    </div>
+                                </ButtonAndTitleContainer>
+                                <span>R$ 9,10</span>
+                            </CoffeeOrderContainer>
+
+                            <div>
+                                <span>Total de itens</span>
+                                <span>R$ 9,00</span>
+                            </div>
+
+                            <div>
+                                <span>Entrega</span>
+                                <span>R$ 9,00</span>
+                            </div>
+
+                            <div>
+                                <span>Total</span>
+                                <span>R$ 9,00</span>
+                            </div>
+
+                            <button>Confirmar pedido</button>
+
+                        </ConfirmOrder>
+
                     </div>
 
-                    <button type="submit">Confirmar Pedido</button>
+                </CheckoutContainer>
 
-                </FinishedContainer>
-
-            </section>
-        </CheckoutContainer>
+            </form>
+        </main>
     )
 }

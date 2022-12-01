@@ -12,7 +12,7 @@ export function Header() {
 
             <NavActionsContainer>
                 <span>
-                    <MapPin size={24} color="#8047F8" weight="fill" id="MapPin" />
+                    <MapPin size={24} weight="fill" id="MapPin" />
                     Porto Alegre, RS
                 </span>
 
