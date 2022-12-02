@@ -99,11 +99,11 @@ export const CoffeesContainer = styled(containerPatternSizeBase)`
 export const CoffeeCardContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-    gap: 2rem 1rem;
+    gap: 1rem 1rem;
 `
 
 export const CoffeeCard = styled.div`
-    margin-top: 3.375rem;
+    margin-top: calc(2.5rem - 1rem);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -174,7 +174,7 @@ width: 100%;
         display: flex;
         gap: .5rem;
 
-        span{
+        a{
             display: flex;
             align-items: center;
             padding: .5rem;
