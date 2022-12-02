@@ -10,8 +10,7 @@ export function Home() {
         id: string,
         name: string,
         type: string[],
-        description: string,
-        image: string
+        description: string
     }[]
 
     const coffeesAvailable: Coffee = [
@@ -89,15 +88,18 @@ export function Home() {
                         return(
                             <CoffeeCard key={coffee.id}>
                         <div>
-                            <img src={} alt="" />
+                            <img src={`https://raw.githubusercontent.com/rodrrigodev/coffee-delivery/main/src/assets/${coffee.id}.png`} alt="" />
                         </div>
                         <div>
-                            <span>Tradicional</span>
-                            <span>Tradicional</span>
+                            
+                                {coffee.type.map((element)=>{
+                                    return(<span key={ coffee.id + element}>{element}</span>)
+                                })}
+                            
                         </div>
 
-                        <h3>Expresso Tradicional</h3>
-                        <p>O tradicional café feito com água quente e grãos moídos</p>
+                        <h3>{coffee.name}</h3>
+                        <p>{coffee.description}</p>
 
                         <PriceAndAmount>
                             <span>9,90</span>
