@@ -196,12 +196,12 @@ export const PlusOrMinus = styled.div`
     align-items: center;
     background-color: ${props=> props.theme["base-button"]};
     border-radius: 6px;
+    padding: .5rem;
 
     button{
         background-color: transparent;
         border: 0;
         color: ${props=> props.theme["purple"]};
-        padding: .5rem;
         transition: all 500ms;
 
         &:hover{
