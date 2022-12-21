@@ -123,7 +123,11 @@ export const PlusOrMinus = styled.div`
         color: ${props=> props.theme["purple"]};
         transition: all 500ms;
 
-        &:hover{
+        &:disabled{
+            color: ${props=> props.theme["base-label"]};
+        }
+
+        &:hover:not(:disabled){
             color: ${props=> props.theme["purple-dark"]};
             transition: all 500ms;
         }
