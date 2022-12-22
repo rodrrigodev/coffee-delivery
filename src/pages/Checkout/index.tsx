@@ -1,9 +1,12 @@
+import { useContext } from "react";
+import { CoffeesCartContext } from "../../contexts/CoffeesCartContext";
 import { DeliveryAddress } from "./componentes/DeliveryAddress";
 import { PaymentMethod } from "./componentes/PaymentMethod";
 import { SelectedCoffees } from "./componentes/SelectedCoffees";
 import { CheckoutContainer } from "./styles";
 
 export function Checkout() {
+    const { coffeesCart, totalCoffees } = useContext(CoffeesCartContext)
     return (
         <main>
             <form action="">
@@ -20,7 +23,7 @@ export function Checkout() {
 
                     <div>
 
-                        <h2>Cafés Selecionados</h2>
+                        <h2>{totalCoffees? "Cafés selecionados" : "Carrinho vazio"}</h2>
 
                         <SelectedCoffees/>
 

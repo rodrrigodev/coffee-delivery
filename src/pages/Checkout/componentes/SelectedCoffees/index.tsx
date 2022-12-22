@@ -1,66 +1,83 @@
 import { PlusOrMinus } from "../../../Home/components/CoffeesCard/styles"
 import { ButtonAndTitleContainer, CoffeeOrderContainer, CoffeePrice, ConfirmOrder, FinalPrice, PriceItensTotalContainer } from "./styles"
-import expressTra from "../../../../assets/expressTrad.png"
-import { Minus, Plus, Trash } from "phosphor-react"
+import { House, Minus, Plus, Trash } from "phosphor-react"
 import { useContext } from "react"
 import { CoffeesCartContext } from "../../../../contexts/CoffeesCartContext"
+import { Link } from "react-router-dom"
 
-export function SelectedCoffees(){
-    const { coffeesCart } = useContext(CoffeesCartContext)
-    return(
+export function SelectedCoffees() {
+    const { coffeesCart, totalCoffees } = useContext(CoffeesCartContext)
+
+    return (
         <ConfirmOrder>
 
-            {coffeesCart.map((coffee)=>{
-                return(
-                <CoffeeOrderContainer>
-                <img src={expressTra} alt="" />
+            {totalCoffees ?
 
-                <ButtonAndTitleContainer>
-                    <h3>{coffee.name}</h3>
+                coffeesCart.map((coffee) => {
+                    return (
+                        <CoffeeOrderContainer>
+                            {/* <img src={expressTra} alt="" /> */}
+
+                            <ButtonAndTitleContainer>
+                                <h3>{coffee.name}</h3>
+
+                                <div>
+                                    <PlusOrMinus>
+                                        <button type="button">
+                                            <Minus size={18} />
+                                        </button>
+                                        <input value={coffee.amount} type="number" readOnly />
+                                        <button type="button">
+                                            <Plus size={18} />
+                                        </button>
+                                    </PlusOrMinus>
+
+                                    <span>
+                                        <Trash size={18} id="Trash" />
+                                        Remover
+                                    </span>
+                                </div>
+                            </ButtonAndTitleContainer>
+                            <CoffeePrice>R$ 9,10</CoffeePrice>
+                        </CoffeeOrderContainer>
+                    )
+                })
+
+                : ""}
+
+            {totalCoffees ?
+
+                <PriceItensTotalContainer>
+                    <div>
+                        <span>Total de itens</span>
+                        <span>R$ 9,00</span>
+                    </div>
 
                     <div>
-                        <PlusOrMinus>
-                            <button>
-                                <Minus size={18} />
-                            </button>
-                            <input value={coffee.amount} type="number" name="" readOnly />
-                            <button>
-                                <Plus size={18} />
-                            </button>
-                        </PlusOrMinus>
-
-                        <span>
-                            <Trash size={18} id="Trash" />
-                            Remover
-                        </span>
+                        <span>Entrega</span>
+                        <span>R$ 9,00</span>
                     </div>
-                </ButtonAndTitleContainer>
-                <CoffeePrice>R$ 9,10</CoffeePrice>
-            </CoffeeOrderContainer>
-                )
-            })}
 
-                            
+                    <div>
+                        <FinalPrice>Total</FinalPrice>
+                        <FinalPrice>R$ 9,00</FinalPrice>
+                    </div>
 
-                            <PriceItensTotalContainer>
-                            <div>
-                                <span>Total de itens</span>
-                                <span>R$ 9,00</span>
-                            </div>
+                    <button>Confirmar pedido</button>
+                </PriceItensTotalContainer> :
 
-                            <div>
-                                <span>Entrega</span>
-                                <span>R$ 9,00</span>
-                            </div>
+                <div>
+                    <p>Parece que seu carrinho está um pouco vazio no momento.</p>
+                    <Link to="/">
+                        <House size={22}/>
+                        Home
+                    </Link>
 
-                            <div>
-                                <FinalPrice>Total</FinalPrice>
-                                <FinalPrice>R$ 9,00</FinalPrice>
-                            </div>
+                </div>
+            }
 
-                            <button>Confirmar pedido</button>
-                            </PriceItensTotalContainer>
+        </ConfirmOrder>
 
-                        </ConfirmOrder>
     )
+    { if (totalCoffees) { return <h1>2</h1> } }
 }

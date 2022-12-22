@@ -27,4 +27,10 @@ body, input, textarea, button{
 a{
     text-decoration: none;
 }
+
+@media (max-width: 768px){
+    html{
+        font-size: 87.5%;
+    }
+}
 `
