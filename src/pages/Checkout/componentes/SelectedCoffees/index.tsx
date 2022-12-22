@@ -2,62 +2,45 @@ import { PlusOrMinus } from "../../../Home/components/CoffeesCard/styles"
 import { ButtonAndTitleContainer, CoffeeOrderContainer, CoffeePrice, ConfirmOrder, FinalPrice, PriceItensTotalContainer } from "./styles"
 import expressTra from "../../../../assets/expressTrad.png"
 import { Minus, Plus, Trash } from "phosphor-react"
+import { useContext } from "react"
+import { CoffeesCartContext } from "../../../../contexts/CoffeesCartContext"
 
 export function SelectedCoffees(){
+    const { coffeesCart } = useContext(CoffeesCartContext)
     return(
         <ConfirmOrder>
 
-                            <CoffeeOrderContainer>
-                                <img src={expressTra} alt="" />
+            {coffeesCart.map((coffee)=>{
+                return(
+                <CoffeeOrderContainer>
+                <img src={expressTra} alt="" />
 
-                                <ButtonAndTitleContainer>
-                                    <h3>Expresso Tradicional</h3>
+                <ButtonAndTitleContainer>
+                    <h3>{coffee.name}</h3>
 
-                                    <div>
-                                        <PlusOrMinus>
-                                            <button>
-                                                <Minus size={18} />
-                                            </button>
-                                            <input type="number" name="" id="" placeholder="0" />
-                                            <button>
-                                                <Plus size={18} />
-                                            </button>
-                                        </PlusOrMinus>
+                    <div>
+                        <PlusOrMinus>
+                            <button>
+                                <Minus size={18} />
+                            </button>
+                            <input value={coffee.amount} type="number" name="" readOnly />
+                            <button>
+                                <Plus size={18} />
+                            </button>
+                        </PlusOrMinus>
 
-                                        <span>
-                                            <Trash size={18} id="Trash" />
-                                            Remover
-                                        </span>
-                                    </div>
-                                </ButtonAndTitleContainer>
-                                <CoffeePrice>R$ 9,10</CoffeePrice>
-                            </CoffeeOrderContainer>
+                        <span>
+                            <Trash size={18} id="Trash" />
+                            Remover
+                        </span>
+                    </div>
+                </ButtonAndTitleContainer>
+                <CoffeePrice>R$ 9,10</CoffeePrice>
+            </CoffeeOrderContainer>
+                )
+            })}
 
-                            <CoffeeOrderContainer>
-                                <img src={expressTra} alt="" />
-
-                                <ButtonAndTitleContainer>
-                                    <h3>Expresso Tradicional</h3>
-
-                                    <div>
-                                        <PlusOrMinus>
-                                            <button>
-                                                <Minus size={18} />
-                                            </button>
-                                            <input type="number" name="" id="" placeholder="0" />
-                                            <button>
-                                                <Plus size={18} />
-                                            </button>
-                                        </PlusOrMinus>
-
-                                        <span>
-                                            <Trash size={18} id="Trash" />
-                                            Remover
-                                        </span>
-                                    </div>
-                                </ButtonAndTitleContainer>
-                                <CoffeePrice>R$ 9,10</CoffeePrice>
-                            </CoffeeOrderContainer>
+                            
 
                             <PriceItensTotalContainer>
                             <div>
