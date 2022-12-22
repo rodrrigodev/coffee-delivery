@@ -4,7 +4,7 @@ import { containerPatternSizeBase } from "../Home/styles";
 export const CheckoutContainer = styled(containerPatternSizeBase)`
     margin: 4.5rem auto;
     gap: 1rem;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 
     h2{
         font-family: 'Baloo 2';

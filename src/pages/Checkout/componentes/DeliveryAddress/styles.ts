@@ -13,31 +13,13 @@ export const InputContainer = styled.div`
     gap: 1rem;
 `
 
-// export const InputDivContainer = styled.div`
-//     display: flex;
-//     gap: .75rem;
-//     flex-wrap: wrap;
-
-//     div{
-//         position: relative;
-//     }
-
-//     span{
-//         position: absolute;
-//         right: .75rem;
-//         top: .8125rem;
-//         font-size: .75rem;
-//         color: ${props => props.theme["base-label"]};
-//     }
-// `
-
 export const InputDivContainer = styled.div`
     display: flex;
     gap: .75rem;
-    flex-wrap: wrap;
 
     div{
         position: relative;
+        width: calc(60% + .75rem);
     }
 
     span{
@@ -65,7 +47,7 @@ const inputBase = styled.input`
 `
 
 export const InputCity = styled(inputBase)`
-    width: 17.5rem;
+    width: 50%;
 `
 
 export const InputStreet = styled(inputBase)`
@@ -73,13 +55,21 @@ export const InputStreet = styled(inputBase)`
 `
 
 export const InputComplement = styled(inputBase)`
-    width: 21.75rem;
+    width: 100%;
 `
 
-export const InputCepNumberDistrict = styled(inputBase)`
-    width: 12.5rem;
+export const InputCep = styled(inputBase)`
+    width: calc(40% - 1.5rem);
+`
+
+export const InputNumber = styled(inputBase)`
+    width: calc(40% - 1.5rem);
+`
+
+export const InputDistrict = styled(inputBase)`
+    width: calc(40% - 1.5rem);
 `
 
 export const InputUf = styled(inputBase)`
-    width: 3.75rem;
+    width: 10%;
 `

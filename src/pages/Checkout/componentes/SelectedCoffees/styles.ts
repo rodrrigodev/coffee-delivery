@@ -20,7 +20,7 @@ export const CoffeeOrderContainer = styled.div`
 `
 
 export const ButtonAndTitleContainer = styled.div`
-    margin-right: 3.125rem;
+    margin-right: 3rem;
 
     h3{
         font-size: 1rem;
