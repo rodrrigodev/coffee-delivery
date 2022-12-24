@@ -1,40 +1,23 @@
 import { MapPinLine } from "phosphor-react";
 import { BackgroundCardCollor } from "../../styles";
-import { AddressTitleContainer, InputCep, InputCity, InputComplement, InputContainer, InputDistrict, InputDivContainer, InputNumber, InputStreet, InputUf } from "./styles";
+import { AddressForm } from "../AddressForm";
+import { AddressTitleContainer } from "./styles";
 
-export function DeliveryAddress(){
-    return(
+export function DeliveryAddress() {
+
+    return (
         <BackgroundCardCollor>
-        <AddressTitleContainer>
-            <span>
-                <MapPinLine size={22} />
-            </span>
-            <div>
-                <h3>Endereço de Entrega</h3>
-                <p>Informe o endereço onde deseja receber seu pedido</p>
-            </div>
-        </AddressTitleContainer>
-
-        <InputContainer>
-            <InputCep type="number" name="" id="" placeholder="CEP" />
-            <InputStreet type="text" name="" id="" placeholder="Rua" />
-
-            <InputDivContainer>
-                <InputNumber type="number" name="" id="" placeholder="Número" />
+            <AddressTitleContainer>
+                <span>
+                    <MapPinLine size={22} />
+                </span>
                 <div>
-                <InputComplement type="text" name="" id="" placeholder="Complemento" />
-                    <span>Opcional</span>
+                    <h3>Endereço de Entrega</h3>
+                    <p>Informe o endereço onde deseja receber seu pedido</p>
                 </div>
-            </InputDivContainer>
+            </AddressTitleContainer>
 
-            <InputDivContainer>
-                <InputDistrict type="text" name="" id="" placeholder="Bairro" />
-                <InputCity type="text" name="" id="" placeholder="Cidade" />
-                <InputUf type="text" name="" id="" placeholder="UF" />
-            </InputDivContainer>
-
-        </InputContainer>
-
-    </BackgroundCardCollor>
+            <AddressForm />
+        </BackgroundCardCollor>
     )
 }

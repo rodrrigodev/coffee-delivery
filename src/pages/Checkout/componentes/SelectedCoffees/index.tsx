@@ -1,12 +1,12 @@
 import { PlusOrMinus } from "../../../Home/components/CoffeesCard/styles"
 import { ButtonAndTitleContainer, CoffeeOrderContainer, CoffeePrice, ConfirmOrder, FinalPrice, PriceItensTotalContainer } from "./styles"
-import { House, Minus, Plus, Trash } from "phosphor-react"
+import { HouseLine, HouseSimple, Minus, Plus, Trash } from "phosphor-react"
 import { useContext } from "react"
 import { CoffeesCartContext } from "../../../../contexts/CoffeesCartContext"
 import { Link } from "react-router-dom"
 
 export function SelectedCoffees() {
-    const { coffeesCart, totalCoffees } = useContext(CoffeesCartContext)
+    const { coffeesCart, totalCoffees, handleIncreaseOne, handleDecreaseOne } = useContext(CoffeesCartContext)
 
     return (
         <ConfirmOrder>
@@ -15,25 +15,40 @@ export function SelectedCoffees() {
 
                 coffeesCart.map((coffee) => {
                     return (
-                        <CoffeeOrderContainer>
-                            {/* <img src={expressTra} alt="" /> */}
+                        <CoffeeOrderContainer key={coffee.id}>
+                            <img src={`https://raw.githubusercontent.com/rodrrigodev/coffee-delivery/main/src/assets/${coffee.id}.png`} alt="" />
 
                             <ButtonAndTitleContainer>
                                 <h3>{coffee.name}</h3>
 
                                 <div>
                                     <PlusOrMinus>
-                                        <button type="button">
-                                            <Minus size={18} />
+                                        <button
+                                            type="button"
+                                            disabled={coffee.quantity === 1 ? true : false}
+                                        >
+                                            <Minus
+                                                size={18}
+                                                onClick={() => handleDecreaseOne(coffee.id, "cart")}
+                                            />
                                         </button>
-                                        <input value={coffee.amount} type="number" readOnly />
-                                        <button type="button">
+                                        <input
+                                            value={coffee.quantity}
+                                            type="number"
+                                            readOnly />
+                                        <button
+                                            type="button"
+                                            onClick={() => handleIncreaseOne(coffee.id, "cart")}
+                                        >
                                             <Plus size={18} />
                                         </button>
                                     </PlusOrMinus>
 
                                     <span>
-                                        <Trash size={18} id="Trash" />
+                                        <Trash
+                                            size={18}
+                                            id="Trash"
+                                        />
                                         Remover
                                     </span>
                                 </div>
@@ -63,13 +78,15 @@ export function SelectedCoffees() {
                         <FinalPrice>R$ 9,00</FinalPrice>
                     </div>
 
-                    <button>Confirmar pedido</button>
+                    <button type="submit">Confirmar pedido</button>
                 </PriceItensTotalContainer> :
 
                 <div>
                     <p>Parece que seu carrinho está um pouco vazio no momento.</p>
                     <Link to="/">
-                        <House size={22}/>
+                        <span>
+                            <HouseLine size={22} />
+                        </span>
                         Home
                     </Link>
 
@@ -79,5 +96,4 @@ export function SelectedCoffees() {
         </ConfirmOrder>
 
     )
-    { if (totalCoffees) { return <h1>2</h1> } }
 }

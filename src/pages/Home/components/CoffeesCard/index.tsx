@@ -39,7 +39,7 @@ export function CoffeesCard(){
                                         <PlusOrMinus>
                                             <button
                                             disabled={coffee.quantity === 1 ? true : false}
-                                            onClick={()=> handleDecreaseOne(coffee.id)}
+                                            onClick={()=> handleDecreaseOne(coffee.id, "home")}
                                             >
                                                 <Minus size={22} />
                                             </button>
@@ -51,7 +51,7 @@ export function CoffeesCard(){
                                             readOnly
                                             />
 
-                                            <button onClick={()=>handleIncreaseOne(coffee.id)}>
+                                            <button onClick={()=>handleIncreaseOne(coffee.id, "home")}>
                                                 <Plus size={22} />
                                             </button>
                                         </PlusOrMinus>
