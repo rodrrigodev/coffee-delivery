@@ -4,6 +4,38 @@ import { ContainerCardBase } from "../../styles";
 
 export const ConfirmOrder = styled(ContainerCardBase)`
     border-radius: 6px 40px ;
+
+    a{
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        background-color: ${props=> props.theme["purple-light"]};
+        color: ${props=> props.theme["purple-dark"]};
+        max-width: 5.8rem;
+        padding: .5rem 0;
+        border-radius: 6px;
+        font-size: .875rem;
+        transition: all 500ms;
+
+        span{
+            line-height: 0;
+            color: ${props=> props.theme["purple"]};
+            transition: all 500ms;
+        }
+
+        &:hover{
+            background-color: ${props=> props.theme["purple"]};
+            color: ${props=> props.theme["purple-light"]};
+            transition: all 500ms;
+
+            span{
+                color: ${props=> props.theme["purple-light"]};
+                transition: all 500ms;
+            }
+        }
+    }
 `
 
 export const CoffeeOrderContainer = styled.div`

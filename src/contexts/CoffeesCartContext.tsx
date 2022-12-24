@@ -17,9 +17,9 @@ const coffeesAvailable = [
     { id: "irish", name: "Irlandês", type: ["Especial", "Alcoólico"], description: "Bebida a base de café, uísque irlandês, açúcar e chantilly", quantity: 1 },
 ]
 
-interface CoffeesCart{
+interface CoffeesCart {
     id: string,
-    amount: number,
+    quantity: number,
     name: string
 }[]
 
@@ -31,10 +31,12 @@ type coffeesToBuyType = {
     quantity: number;
 }[]
 
+type handleIncreaseAndDescrease = (id: string, type: string) => void
+
 interface CoffeesCartContextType {
     coffeesToBuy: coffeesToBuyType,
-    handleIncreaseOne: (id: string) => void,
-    handleDecreaseOne: (id: string) => void,
+    handleIncreaseOne: handleIncreaseAndDescrease,
+    handleDecreaseOne: handleIncreaseAndDescrease,
     handleAddToCart: (id: string, name: string) => void,
     totalCoffees: number,
     coffeesCart: CoffeesCart[]
@@ -43,74 +45,90 @@ interface CoffeesCartContextType {
 
 export const CoffeesCartContext = createContext({} as CoffeesCartContextType)
 
-interface CoffeesCartContextProviderProps{
+interface CoffeesCartContextProviderProps {
     children: ReactNode
 }
 
-export function CoffeesCartContextProvider({children}: CoffeesCartContextProviderProps){
+export function CoffeesCartContextProvider({ children }: CoffeesCartContextProviderProps) {
 
 
-const [ coffeesToBuy, setCoffeesToBuy ] = useState(coffeesAvailable)
+    const [coffeesToBuy, setCoffeesToBuy] = useState(coffeesAvailable)
 
-const [ coffeesCart, setCoffeesCart ] = useState<CoffeesCart[]>([])
+    const [coffeesCart, setCoffeesCart] = useState<CoffeesCart[]>([])
 
-const [ totalCoffees, setTotalCoffees ] = useState(0) 
+    const [totalCoffees, setTotalCoffees] = useState(0)
 
-    function handleIncreaseOne(id: string){
-        setCoffeesToBuy(state=> state.map((coffee)=> {
-            if(coffee.id === id && coffee.quantity < 20){
-                return {...coffee, quantity: coffee.quantity + 1}
-            }else{return coffee}
+    function handleIncreaseOne(id: string, type: string) {
+
+        type === "cart" ?
+            setCoffeesCart(state => state.map((coffee) => {
+                if (coffee.id === id && coffee.quantity < 20) {
+                    return { ...coffee, quantity: coffee.quantity + 1 }
+                } else { return coffee }
+            }))
+            :
+            setCoffeesToBuy(state => state.map((coffee) => {
+                if (coffee.id === id && coffee.quantity < 20) {
+                    return { ...coffee, quantity: coffee.quantity + 1 }
+                } else { return coffee }
             }))
     }
 
-    function handleDecreaseOne(id: string){
-        setCoffeesToBuy(state=> state.map((coffee)=> {
-            if(coffee.id === id && coffee.quantity > 1){
-                return {...coffee, quantity: coffee.quantity - 1}
-            }else{return coffee}
+    function handleDecreaseOne(id: string, type: string) {
+
+        type === "cart" ?
+            setCoffeesCart(state => state.map((coffee) => {
+                if (coffee.id === id && coffee.quantity > 1) {
+                    return { ...coffee, quantity: coffee.quantity - 1 }
+                } else { return coffee }
+            }))
+            :
+            setCoffeesToBuy(state => state.map((coffee) => {
+                if (coffee.id === id && coffee.quantity > 1) {
+                    return { ...coffee, quantity: coffee.quantity - 1 }
+                } else { return coffee }
             }))
     }
 
-    function handleAddToCart(id: string, name: string){
+    function handleAddToCart(id: string, name: string) {
 
-        const findCoffee = coffeesToBuy.find(coffee=> coffee.id === id)
+        const findCoffee = coffeesToBuy.find(coffee => coffee.id === id)
 
-        const coffeeExistsInCart = coffeesCart.find(coffee=> coffee.id === id)
-        
-        if(findCoffee && !coffeeExistsInCart){
-            setCoffeesCart(state=> [...state, {id, amount: findCoffee.quantity, name}])
-            setCoffeesToBuy(state=> state.map((coffee)=> {
-                if(coffee.id === id && coffee.quantity > 1){
-                    return {...coffee, quantity: 1}
-                }else{return coffee}
-                }))
-        }else{
-            setCoffeesCart(state=> state.map((coffee)=> {
-                if(coffee.id === id && findCoffee && coffeeExistsInCart){
-                    return {...coffee, amount: coffee.amount + findCoffee.quantity <=20 ? coffee.amount + findCoffee.quantity : 20}
-                }else{return coffee}
-                }))
+        const coffeeExistsInCart = coffeesCart.find(coffee => coffee.id === id)
 
-                setCoffeesToBuy(state=> state.map((coffee)=> {
-                    if(coffee.id === id && coffee.quantity > 1){
-                        return {...coffee, quantity: 1}
-                    }else{return coffee}
-                    }))
-    
+        if (findCoffee && !coffeeExistsInCart) {
+            setCoffeesCart(state => [...state, { id, quantity: findCoffee.quantity, name }])
+            setCoffeesToBuy(state => state.map((coffee) => {
+                if (coffee.id === id && coffee.quantity > 1) {
+                    return { ...coffee, quantity: 1 }
+                } else { return coffee }
+            }))
+        } else {
+            setCoffeesCart(state => state.map((coffee) => {
+                if (coffee.id === id && findCoffee && coffeeExistsInCart) {
+                    return { ...coffee, amount: coffee.quantity + findCoffee.quantity <= 20 ? coffee.quantity + findCoffee.quantity : 20 }
+                } else { return coffee }
+            }))
+
+            setCoffeesToBuy(state => state.map((coffee) => {
+                if (coffee.id === id && coffee.quantity > 1) {
+                    return { ...coffee, quantity: 1 }
+                } else { return coffee }
+            }))
+
         }
+    }
+
+    useEffect(() => {
+        if (coffeesCart.length > 0) {
+            const allAmout = coffeesCart.map((elements) => { return elements.quantity })
+            const total = allAmout.reduce((total, currentValue) => total + currentValue)
+            setTotalCoffees(total)
         }
+    }, [coffeesCart])
 
-        useEffect(()=>{
-            if(coffeesCart.length > 0){
-                const allAmout = coffeesCart.map((elements)=> {return elements.amount})
-                const total = allAmout.reduce((total, currentValue)=> total + currentValue)
-                setTotalCoffees(total)
-            }
-         }, [coffeesCart])
-
-    return(
-        <CoffeesCartContext.Provider value={{coffeesToBuy, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees}}>
+    return (
+        <CoffeesCartContext.Provider value={{ coffeesToBuy, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
             {children}
         </CoffeesCartContext.Provider>
     )
