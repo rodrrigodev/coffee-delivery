@@ -142,3 +142,10 @@ export const FinalPrice = styled.span`
     line-height: 1.3;
     color: ${props => props.theme["base-subtitle"]};
 `
+
+export const EmptyCartContainer = styled.div`
+   p{
+    max-width: 24.5625rem;
+    width: 100%;
+   }
+`

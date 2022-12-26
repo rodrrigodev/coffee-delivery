@@ -42,7 +42,8 @@ interface CoffeesCartContextType {
     handleAddToCart: (id: string, name: string) => void,
     totalCoffees: number,
     coffeesCart: CoffeesCart[],
-    totalCoffeesPrice: number
+    totalCoffeesPrice: number,
+    handleRemoveFromCart: (id: string)=> void
 
 }
 
@@ -124,6 +125,12 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
         }
     }
 
+    function handleRemoveFromCart(id: string){
+        const findCoffee = coffeesCart.find(coffee => coffee.id === id)
+        const removeCoffee = findCoffee ? coffeesCart.filter((coffee) => {return coffee.id !== findCoffee.id }) : coffeesCart
+        setCoffeesCart(removeCoffee)
+    }
+
     useEffect(() => {
         if (coffeesCart.length > 0) {
             const allQuantity = coffeesCart.map((elements) => { return elements.quantity }).reduce((total, currentValue) => total + currentValue)
@@ -133,10 +140,15 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
             setTotalCoffees(allQuantity)
             setTotalCoffeesPrice(priceFinal)
         }
+
+        if(coffeesCart.length === 0 && totalCoffees && totalCoffees){
+            setTotalCoffees(0)
+            setTotalCoffeesPrice(0)
+        }
     }, [coffeesCart, totalCoffeesPrice, totalCoffees])
 
     return (
-        <CoffeesCartContext.Provider value={{ coffeesToBuy, totalCoffeesPrice, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
+        <CoffeesCartContext.Provider value={{ coffeesToBuy, handleRemoveFromCart, totalCoffeesPrice, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
             {children}
         </CoffeesCartContext.Provider>
     )

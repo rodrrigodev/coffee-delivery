@@ -1,5 +1,5 @@
 import { PlusOrMinus } from "../../../Home/components/CoffeesCard/styles"
-import { ButtonAndTitleContainer, CoffeeOrderContainer, CoffeePrice, ConfirmOrder, FinalPrice, PriceItensTotalContainer } from "./styles"
+import { ButtonAndTitleContainer, CoffeeOrderContainer, CoffeePrice, ConfirmOrder, EmptyCartContainer, FinalPrice, PriceItensTotalContainer } from "./styles"
 import { HouseLine, HouseSimple, Minus, Plus, Trash } from "phosphor-react"
 import { useContext } from "react"
 import { CoffeesCartContext } from "../../../../contexts/CoffeesCartContext"
@@ -7,7 +7,7 @@ import { formatPrice } from "../../../../utils/deliveryPrice"
 import { Link } from "react-router-dom"
 
 export function SelectedCoffees() {
-    const { coffeesCart, totalCoffees, handleIncreaseOne, handleDecreaseOne, totalCoffeesPrice} = useContext(CoffeesCartContext)
+    const { coffeesCart, totalCoffees, handleIncreaseOne, handleDecreaseOne, totalCoffeesPrice, handleRemoveFromCart} = useContext(CoffeesCartContext)
 
     return (
         <ConfirmOrder>
@@ -46,7 +46,7 @@ export function SelectedCoffees() {
                                         </button>
                                     </PlusOrMinus>
 
-                                    <span>
+                                    <span onClick={()=> handleRemoveFromCart(coffee.id)}>
                                         <Trash
                                             size={18}
                                             id="Trash"
@@ -77,13 +77,13 @@ export function SelectedCoffees() {
 
                     <div>
                         <FinalPrice>Total</FinalPrice>
-                        <FinalPrice>R$ 9,00</FinalPrice>
+                        <FinalPrice>R$ {formatPrice((totalCoffees*1.50) + totalCoffeesPrice)}</FinalPrice>
                     </div>
 
                     <button type="submit">Confirmar pedido</button>
                 </PriceItensTotalContainer> :
 
-                <div>
+                <EmptyCartContainer>
                     <p>Parece que seu carrinho está um pouco vazio no momento.</p>
                     <Link to="/">
                         <span>
@@ -92,7 +92,7 @@ export function SelectedCoffees() {
                         Home
                     </Link>
 
-                </div>
+                </EmptyCartContainer>
             }
 
         </ConfirmOrder>
