@@ -85,6 +85,7 @@ width: 100%;
             content: "R$";
             font-size: .875rem;
             line-height: 1.3;
+            margin-right: .2rem;
         }
 }
 

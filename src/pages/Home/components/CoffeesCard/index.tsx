@@ -1,6 +1,7 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react"
 import { useContext } from "react"
 import { CoffeesCartContext } from "../../../../contexts/CoffeesCartContext"
+import { formatPrice } from "../../../../utils/deliveryPrice"
 import { CoffeeCard, CoffeeCardContainer, CoffeesContainer, PlusOrMinus, PriceAndAmount } from "./styles"
 
 export function CoffeesCard(){
@@ -34,7 +35,7 @@ export function CoffeesCard(){
                                 <p>{coffee.description}</p>
 
                                 <PriceAndAmount>
-                                    <span>9,90</span>
+                                    <span>{ formatPrice(coffee.price)}</span>
                                     <div>
                                         <PlusOrMinus>
                                             <button
@@ -51,7 +52,10 @@ export function CoffeesCard(){
                                             readOnly
                                             />
 
-                                            <button onClick={()=>handleIncreaseOne(coffee.id, "home")}>
+                                            <button
+                                            onClick={()=>handleIncreaseOne(coffee.id, "home")}
+                                            disabled={coffee.quantity === 20 ? true : false}
+                                            >
                                                 <Plus size={22} />
                                             </button>
                                         </PlusOrMinus>
