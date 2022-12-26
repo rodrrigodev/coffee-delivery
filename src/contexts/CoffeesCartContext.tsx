@@ -1,26 +1,27 @@
 import { createContext, ReactNode, useState, useEffect } from "react"
 
 const coffeesAvailable = [
-    { id: "traditionalEspresso", name: "Expresso", type: ["Tradicional"], description: "O tradicional café feito com água quente e grãos moídos", quantity: 1 },
-    { id: "americanExpress", name: "Expresso Americano", type: ["Tradicional"], description: "Expresso diluído, menos intenso que o tradicional", quantity: 1 },
-    { id: "creamyEspresso", name: "Expresso Cremoso", type: ["Tradicional"], description: "Café expresso tradicional com espuma cremosa", quantity: 1 },
-    { id: "icedEspresso", name: "Expresso Gelado", type: ["Tradicional", "Gelado"], description: "Bebida preparada com café expresso e cubos de gelo", quantity: 1 },
-    { id: "coffeeMilk", name: "Café com Leite", type: ["Tradicional", "Com leite"], description: "Meio a meio de expresso tradicional com leite vaporizado", quantity: 1 },
-    { id: "latte", name: "Latte", type: ["Tradicional", "Com leite"], description: "Uma dose de café expresso com o dobro de leite e espuma cremosa", quantity: 1 },
-    { id: "capuccino", name: "Capuccino", type: ["Tradicional", "Com leite"], description: "Bebida com canela feita de doses iguais de café, leite e espuma", quantity: 1 },
-    { id: "macchiato", name: "Macchiato", type: ["Tradicional", "Com leite"], description: "Café expresso misturado com um pouco de leite quente e espuma", quantity: 1 },
-    { id: "mocaccino", name: "Mocaccino", type: ["Tradicional", "Com leite"], description: "Café expresso com calda de chocolate, pouco leite e espuma", quantity: 1 },
-    { id: "hotChocolate", name: "Chocolate Quente", type: ["Especial", "Com leite"], description: "Bebida feita com chocolate dissolvido no leite quente e café", quantity: 1 },
-    { id: "cuban", name: "Cubano", type: ["Especial", "Alcoólico", "Gelado"], description: "Drink gelado de café expresso com rum, creme de leite e hortelã", quantity: 1 },
-    { id: "hawaiian", name: "Havaiano", type: ["Especial"], description: "Bebida adocicada preparada com café e leite de coco", quantity: 1 },
-    { id: "arabic", name: "Árabe", type: ["Especial"], description: "Bebida preparada com grãos de café árabe e especiarias", quantity: 1 },
-    { id: "irish", name: "Irlandês", type: ["Especial", "Alcoólico"], description: "Bebida a base de café, uísque irlandês, açúcar e chantilly", quantity: 1 },
+    { id: "traditionalEspresso", name: "Expresso", type: ["Tradicional"], description: "O tradicional café feito com água quente e grãos moídos", quantity: 1, price: 9.90 },
+    { id: "americanExpress", name: "Expresso Americano", type: ["Tradicional"], description: "Expresso diluído, menos intenso que o tradicional", quantity: 1, price: 9.90 },
+    { id: "creamyEspresso", name: "Expresso Cremoso", type: ["Tradicional"], description: "Café expresso tradicional com espuma cremosa", quantity: 1, price: 9.90 },
+    { id: "icedEspresso", name: "Expresso Gelado", type: ["Tradicional", "Gelado"], description: "Bebida preparada com café expresso e cubos de gelo", quantity: 1, price: 10.85 },
+    { id: "coffeeMilk", name: "Café com Leite", type: ["Tradicional", "Com leite"], description: "Meio a meio de expresso tradicional com leite vaporizado", quantity: 1, price: 11.90 },
+    { id: "latte", name: "Latte", type: ["Tradicional", "Com leite"], description: "Uma dose de café expresso com o dobro de leite e espuma cremosa", quantity: 1, price: 11.90 },
+    { id: "capuccino", name: "Capuccino", type: ["Tradicional", "Com leite"], description: "Bebida com canela feita de doses iguais de café, leite e espuma", quantity: 1, price: 11.90 },
+    { id: "macchiato", name: "Macchiato", type: ["Tradicional", "Com leite"], description: "Café expresso misturado com um pouco de leite quente e espuma", quantity: 1, price: 11.90 },
+    { id: "mocaccino", name: "Mocaccino", type: ["Tradicional", "Com leite"], description: "Café expresso com calda de chocolate, pouco leite e espuma", quantity: 1, price: 11.90 },
+    { id: "hotChocolate", name: "Chocolate Quente", type: ["Especial", "Com leite"], description: "Bebida feita com chocolate dissolvido no leite quente e café", quantity: 1, price: 15.00 },
+    { id: "cuban", name: "Cubano", type: ["Especial", "Alcoólico", "Gelado"], description: "Drink gelado de café expresso com rum, creme de leite e hortelã", quantity: 1, price: 15.90 },
+    { id: "hawaiian", name: "Havaiano", type: ["Especial"], description: "Bebida adocicada preparada com café e leite de coco", quantity: 1, price: 14.80 },
+    { id: "arabic", name: "Árabe", type: ["Especial"], description: "Bebida preparada com grãos de café árabe e especiarias", quantity: 1, price: 14.80 },
+    { id: "irish", name: "Irlandês", type: ["Especial", "Alcoólico"], description: "Bebida a base de café, uísque irlandês, açúcar e chantilly", quantity: 1, price: 15.00 },
 ]
 
 interface CoffeesCart {
     id: string,
     quantity: number,
-    name: string
+    name: string,
+    price: number
 }[]
 
 type coffeesToBuyType = {
@@ -29,6 +30,7 @@ type coffeesToBuyType = {
     type: string[];
     description: string;
     quantity: number;
+    price: number
 }[]
 
 type handleIncreaseAndDescrease = (id: string, type: string) => void
@@ -39,7 +41,8 @@ interface CoffeesCartContextType {
     handleDecreaseOne: handleIncreaseAndDescrease,
     handleAddToCart: (id: string, name: string) => void,
     totalCoffees: number,
-    coffeesCart: CoffeesCart[]
+    coffeesCart: CoffeesCart[],
+    totalCoffeesPrice: number
 
 }
 
@@ -57,6 +60,8 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
     const [coffeesCart, setCoffeesCart] = useState<CoffeesCart[]>([])
 
     const [totalCoffees, setTotalCoffees] = useState(0)
+
+    const [totalCoffeesPrice, setTotalCoffeesPrice] = useState(0)
 
     function handleIncreaseOne(id: string, type: string) {
 
@@ -97,7 +102,7 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
         const coffeeExistsInCart = coffeesCart.find(coffee => coffee.id === id)
 
         if (findCoffee && !coffeeExistsInCart) {
-            setCoffeesCart(state => [...state, { id, quantity: findCoffee.quantity, name }])
+            setCoffeesCart(state => [...state, { id, quantity: findCoffee.quantity, name, price: findCoffee.price }])
             setCoffeesToBuy(state => state.map((coffee) => {
                 if (coffee.id === id && coffee.quantity > 1) {
                     return { ...coffee, quantity: 1 }
@@ -121,14 +126,17 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
 
     useEffect(() => {
         if (coffeesCart.length > 0) {
-            const allAmout = coffeesCart.map((elements) => { return elements.quantity })
-            const total = allAmout.reduce((total, currentValue) => total + currentValue)
-            setTotalCoffees(total)
+            const allQuantity = coffeesCart.map((elements) => { return elements.quantity }).reduce((total, currentValue) => total + currentValue)
+            const priceCalc= coffeesCart.map((element) => { return element.price*element.quantity}).reduce((total, currentValue) => total + currentValue)
+           const priceFinal = Number(priceCalc.toFixed(2))
+
+            setTotalCoffees(allQuantity)
+            setTotalCoffeesPrice(priceFinal)
         }
-    }, [coffeesCart])
+    }, [coffeesCart, totalCoffeesPrice, totalCoffees])
 
     return (
-        <CoffeesCartContext.Provider value={{ coffeesToBuy, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
+        <CoffeesCartContext.Provider value={{ coffeesToBuy, totalCoffeesPrice, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
             {children}
         </CoffeesCartContext.Provider>
     )

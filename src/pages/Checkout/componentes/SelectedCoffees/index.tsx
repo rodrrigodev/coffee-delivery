@@ -3,10 +3,11 @@ import { ButtonAndTitleContainer, CoffeeOrderContainer, CoffeePrice, ConfirmOrde
 import { HouseLine, HouseSimple, Minus, Plus, Trash } from "phosphor-react"
 import { useContext } from "react"
 import { CoffeesCartContext } from "../../../../contexts/CoffeesCartContext"
+import { formatPrice } from "../../../../utils/deliveryPrice"
 import { Link } from "react-router-dom"
 
 export function SelectedCoffees() {
-    const { coffeesCart, totalCoffees, handleIncreaseOne, handleDecreaseOne } = useContext(CoffeesCartContext)
+    const { coffeesCart, totalCoffees, handleIncreaseOne, handleDecreaseOne, totalCoffeesPrice} = useContext(CoffeesCartContext)
 
     return (
         <ConfirmOrder>
@@ -39,6 +40,7 @@ export function SelectedCoffees() {
                                         <button
                                             type="button"
                                             onClick={() => handleIncreaseOne(coffee.id, "cart")}
+                                            disabled={coffee.quantity === 20 ? true : false}
                                         >
                                             <Plus size={18} />
                                         </button>
@@ -53,7 +55,7 @@ export function SelectedCoffees() {
                                     </span>
                                 </div>
                             </ButtonAndTitleContainer>
-                            <CoffeePrice>R$ 9,10</CoffeePrice>
+                            <CoffeePrice>R$ {formatPrice(coffee.price)}</CoffeePrice>
                         </CoffeeOrderContainer>
                     )
                 })
@@ -65,12 +67,12 @@ export function SelectedCoffees() {
                 <PriceItensTotalContainer>
                     <div>
                         <span>Total de itens</span>
-                        <span>R$ 9,00</span>
+                        <span>R$ {formatPrice(totalCoffeesPrice)}</span>
                     </div>
 
                     <div>
                         <span>Entrega</span>
-                        <span>R$ 9,00</span>
+                        <span>R$ {formatPrice(totalCoffees*1.50)}</span>
                     </div>
 
                     <div>
