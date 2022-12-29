@@ -43,3 +43,10 @@ export const addressAndPaymentBase = styled.div`
         color: ${props => props.theme["base-text"]}
     }
 `
+
+export const ErrorText = styled.p`
+    margin: 2rem auto;
+    color: red;
+    max-width: 24.5625rem;
+    width: 100%;
+`
