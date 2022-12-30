@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { containerPatternSizeBase } from "../Home/styles";
+
 
 export const CheckoutContainer = styled(containerPatternSizeBase)`
     margin: 4.5rem auto;
@@ -44,9 +46,17 @@ export const addressAndPaymentBase = styled.div`
     }
 `
 
-export const ErrorText = styled.p`
-    margin: 2rem auto;
-    color: red;
+export const ErrorsContainer = styled.div`
+    /* display: ; */
     max-width: 24.5625rem;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .700rem;
+    margin: 2rem 0 0 2.5rem;
+
+    p{
+        font-size: .875rem;
+        color: red;
+    }
 `

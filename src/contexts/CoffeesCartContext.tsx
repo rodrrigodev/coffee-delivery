@@ -35,16 +35,19 @@ type coffeesToBuyType = {
 
 type handleIncreaseAndDescrease = (id: string, type: string) => void
 
+type PaymentMethod = "creditCard" | "debitCard" | "money" | null
+
 interface CoffeesCartContextType {
     coffeesToBuy: coffeesToBuyType,
-    handleIncreaseOne: handleIncreaseAndDescrease,
-    handleDecreaseOne: handleIncreaseAndDescrease,
-    handleAddToCart: (id: string, name: string) => void,
     totalCoffees: number,
     coffeesCart: CoffeesCart[],
     totalCoffeesPrice: number,
+    paymentMethod: PaymentMethod,
+    handleDecreaseOne: handleIncreaseAndDescrease,
+    handleIncreaseOne: handleIncreaseAndDescrease,
+    handleAddToCart: (id: string, name: string) => void,
+    handlePaymentMethod: (value: PaymentMethod)=> void,
     handleRemoveFromCart: (id: string)=> void
-
 }
 
 export const CoffeesCartContext = createContext({} as CoffeesCartContextType)
@@ -57,6 +60,8 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
 
 
     const [coffeesToBuy, setCoffeesToBuy] = useState(coffeesAvailable)
+
+    const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(null)
 
     const [coffeesCart, setCoffeesCart] = useState<CoffeesCart[]>([])
 
@@ -131,6 +136,13 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
         setCoffeesCart(removeCoffee)
     }
 
+    function handlePaymentMethod(method: PaymentMethod){
+        if(paymentMethod !== method){
+            console.log(paymentMethod)
+            setPaymentMethod(method)
+        }
+    }
+
     useEffect(() => {
         if (coffeesCart.length > 0) {
             const allQuantity = coffeesCart.map((elements) => { return elements.quantity }).reduce((total, currentValue) => total + currentValue)
@@ -148,7 +160,7 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
     }, [coffeesCart, totalCoffeesPrice, totalCoffees])
 
     return (
-        <CoffeesCartContext.Provider value={{ coffeesToBuy, handleRemoveFromCart, totalCoffeesPrice, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
+        <CoffeesCartContext.Provider value={{ coffeesToBuy, paymentMethod, handlePaymentMethod, handleRemoveFromCart, totalCoffeesPrice, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
             {children}
         </CoffeesCartContext.Provider>
     )

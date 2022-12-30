@@ -3,7 +3,7 @@ import { InputZipCode, InputCity, InputComplement, InputDistrict, InputDivContai
 import { useForm, useFormContext } from "react-hook-form";
 
 export function AddressForm() {
-    const { register, formState: {errors} } = useFormContext()
+    const { register} = useFormContext()
     
 
     return (

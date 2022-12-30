@@ -3,7 +3,7 @@ import { CoffeesCartContext } from "../../contexts/CoffeesCartContext";
 import { DeliveryAddress } from "./componentes/DeliveryAddress";
 import { PaymentMethod } from "./componentes/PaymentMethod";
 import { SelectedCoffees } from "./componentes/SelectedCoffees";
-import { CheckoutContainer, ErrorText } from "./styles";
+import { CheckoutContainer, ErrorsContainer } from "./styles";
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { FormProvider, useForm } from "react-hook-form";
@@ -22,6 +22,7 @@ type onSubmitFormData = zod.infer<typeof schemaValidation>
 
 export function Checkout() {
     const { coffeesCart, totalCoffees } = useContext(CoffeesCartContext)
+    console.log(coffeesCart)
 
     const newAddress = useForm<onSubmitFormData>({
         resolver: zodResolver(schemaValidation),
@@ -52,7 +53,7 @@ export function Checkout() {
                             <DeliveryAddress />
                         </FormProvider>
 
-                        <PaymentMethod />
+                            <PaymentMethod />
 
                     </div>
 
@@ -62,19 +63,37 @@ export function Checkout() {
 
                         <SelectedCoffees />
 
-                        {errors.zipCode && (
-                            <p>{errors.zipCode.message}</p>
-                        )}
+                        <ErrorsContainer>
 
-                         {errors.city && (
-                            <p>{errors.city.message}</p>
-                        )}
+                            {errors.zipCode && totalCoffees > 0 && (
+                                <p>{errors.zipCode.message}</p>
+                            )}
+
+                            {errors.street && totalCoffees > 0 && (
+                                <p>{errors.street.message}</p>
+                            )}
+
+                            {errors.number && totalCoffees > 0 && (
+                                <p>{errors.number.message}</p>
+                            )}
+
+                            {errors.district && totalCoffees > 0 && (
+                                <p>{errors.district.message}</p>
+                            )}
+
+                            {errors.city && totalCoffees > 0 && (
+                                <p>{errors.city.message}</p>
+                            )}
+
+                            {errors.uf && totalCoffees > 0 && (
+                                <p>{errors.uf.message}</p>
+                            )}
+
+                        </ErrorsContainer>
+
                     </div>
 
                 </CheckoutContainer>
-                        
-
-                        
 
             </form>
 
