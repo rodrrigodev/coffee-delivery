@@ -134,6 +134,9 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
         const findCoffee = coffeesCart.find(coffee => coffee.id === id)
         const removeCoffee = findCoffee ? coffeesCart.filter((coffee) => {return coffee.id !== findCoffee.id }) : coffeesCart
         setCoffeesCart(removeCoffee)
+        if(removeCoffee.length === 0){
+            setPaymentMethod(null)
+        }
     }
 
     function handlePaymentMethod(method: PaymentMethod){
