@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { containerPatternSizeBase } from "../../styles"
 
 export const CoffeesContainer = styled(containerPatternSizeBase)`
-    margin: 0 auto;
+    margin: 0 auto 2rem auto;
     flex-direction: column;
 
     h2{

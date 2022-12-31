@@ -1,6 +1,6 @@
 import { PlusOrMinus } from "../../../Home/components/CoffeesCard/styles"
 import { ButtonAndTitleContainer, CoffeeOrderContainer, CoffeePrice, ConfirmOrder, EmptyCartContainer, FinalPrice, PriceItensTotalContainer } from "./styles"
-import { HouseLine, HouseSimple, Minus, Plus, Trash } from "phosphor-react"
+import { HouseLine, Minus, Plus, Trash } from "phosphor-react"
 import { useContext } from "react"
 import { CoffeesCartContext } from "../../../../contexts/CoffeesCartContext"
 import { formatPrice } from "../../../../utils/deliveryPrice"
