@@ -117,7 +117,7 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
         } else {
             setCoffeesCart(state => state.map((coffee) => {
                 if (coffee.id === id && findCoffee && coffeeExistsInCart) {
-                    return { ...coffee, amount: coffee.quantity + findCoffee.quantity <= 20 ? coffee.quantity + findCoffee.quantity : 20 }
+                    return { ...coffee, quantity: coffee.quantity + findCoffee.quantity <= 20 ? coffee.quantity + findCoffee.quantity : 20 }
                 } else { return coffee }
             }))
 
