@@ -1,8 +1,9 @@
-import { CheckCircle, Minus, Plus, ShoppingCart, WarningCircle } from "phosphor-react"
+import { ArrowCircleUp, CheckCircle, Minus, Plus, ShoppingCart, WarningCircle } from "phosphor-react"
 import { useContext } from "react"
 import { CoffeesCartContext } from "../../../../contexts/CoffeesCartContext"
 import { formatPrice } from "../../../../utils/deliveryPrice"
-import { CoffeeCard, CoffeeCardContainer, CoffeesContainer, SuccessMessage, LimitMessage, PlusOrMinus, PriceAndAmount } from "./styles"
+import { scrollToTop } from "../../../../utils/scroolToTop"
+import { CoffeeCard, CoffeeCardContainer, CoffeesContainer, SuccessMessage, LimitMessage, PlusOrMinus, PriceAndAmount, ButtonToTop } from "./styles"
 
 export function CoffeesCard() {
 
@@ -84,6 +85,10 @@ export function CoffeesCard() {
                 })}
 
             </CoffeeCardContainer>
+
+            <ButtonToTop onClick={scrollToTop}>
+            <ArrowCircleUp size={34} />
+            </ButtonToTop>
 
         </CoffeesContainer>
     )

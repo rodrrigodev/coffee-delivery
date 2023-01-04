@@ -7,8 +7,9 @@ import { CheckoutContainer, ErrorsContainer } from "./styles";
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { FormProvider, useForm } from "react-hook-form";
-
-
+import { ButtonToTop } from "../Home/components/CoffeesCard/styles";
+import { ArrowCircleUp } from "phosphor-react";
+import { scrollToTop } from "../../utils/scroolToTop";
 
 export function Checkout() {
     const { coffeesCart, totalCoffees, paymentMethod } = useContext(CoffeesCartContext)
@@ -103,6 +104,10 @@ export function Checkout() {
                 </CheckoutContainer>
 
             </form>
+
+            <ButtonToTop onClick={scrollToTop}>
+            <ArrowCircleUp size={34} />
+            </ButtonToTop>
 
         </main>
     )
