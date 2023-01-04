@@ -170,3 +170,15 @@ export const LimitMessage = styled(messageBase)`
     background-color: ${props=> props.theme["red-light"]};
     color: ${props=> props.theme["red-dark"]};
 `
+
+export const ButtonToTop = styled.button`
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
+    background-color: red;
+    border: 0;
+    border-radius: 100%;
+    line-height: 0;
+    background-color: ${props=> props.theme["purple"]};
+    color: ${props=> props.theme["white"]};
+`
