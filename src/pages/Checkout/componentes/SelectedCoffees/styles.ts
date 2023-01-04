@@ -4,6 +4,7 @@ import { ContainerCardBase } from "../../styles";
 
 export const ConfirmOrder = styled(ContainerCardBase)`
     border-radius: 6px 40px ;
+    width: 100%;
 
     a{
         margin-top: 2rem;
@@ -43,6 +44,22 @@ export const CoffeeOrderContainer = styled.div`
     padding: .25rem .25rem 2rem .25rem;
     margin-bottom: 1.5rem;
     border-bottom: 1px solid ${props => props.theme["base-button"]};
+    
+    @media only screen and (max-width: 1154px) {
+        justify-content: space-between;
+    }
+
+    @media only screen and (max-width: 425px) {
+        flex-direction: column;
+    }
+
+    > div{
+        display: flex;
+
+    @media only screen and (max-width: 425px) {
+        flex-direction: column;
+    }
+    }
 
     img{
         width: 4rem;
@@ -52,7 +69,6 @@ export const CoffeeOrderContainer = styled.div`
 `
 
 export const ButtonAndTitleContainer = styled.div`
-    margin-right: 3rem;
 
     h3{
         font-size: 1rem;
@@ -60,7 +76,7 @@ export const ButtonAndTitleContainer = styled.div`
         font-weight: 400;
         margin-bottom: .5rem;
     }
-
+    
     div{
         display: flex;
         gap: .5rem;
@@ -100,6 +116,11 @@ export const CoffeePrice = styled.span`
     font-weight: 700;
     line-height: 1.3;
     color: ${props => props.theme["base-text"]};
+
+    @media only screen and (max-width: 425px) {
+        text-align: right;
+        margin-top: 0.75rem;
+    }
 `
 
 export const PriceItensTotalContainer = styled.div`

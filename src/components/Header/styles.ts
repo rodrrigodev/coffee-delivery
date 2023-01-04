@@ -8,6 +8,13 @@ export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    img{
+        @media only screen and (max-width: 374px) {
+        max-width: 5rem;
+        width: 100%;
+    }
+    }
 `
 
 export const NavActionsContainer = styled.div`
@@ -66,5 +73,4 @@ div{
     }
     
 }
-
 `

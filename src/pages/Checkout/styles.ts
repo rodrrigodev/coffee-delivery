@@ -6,8 +6,13 @@ import { containerPatternSizeBase } from "../Home/styles";
 export const CheckoutContainer = styled(containerPatternSizeBase)`
     margin: 4.5rem auto;
     gap: 1rem;
-    /* flex-wrap: wrap; */
 
+    @media only screen and (max-width: 1154px) {
+        flex-wrap: wrap;
+        >div{
+            width: 100%;
+        }
+    }
     h2{
         font-family: 'Baloo 2';
         font-weight: 700;
@@ -47,9 +52,7 @@ export const addressAndPaymentBase = styled.div`
 `
 
 export const ErrorsContainer = styled.div`
-    /* display: ; */
-    max-width: 24.5625rem;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     gap: .700rem;

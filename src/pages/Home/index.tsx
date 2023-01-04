@@ -2,17 +2,11 @@ import { CoffeeDeliveryDescription } from "./components/CoffeeDeliveryDescriptio
 import { CoffeesCard } from "./components/CoffeesCard"
 
 export function Home() {
-
-    function z(data: any) {
-        console.log(data)
-    }
-
     return (
         <main>
 
         <CoffeeDeliveryDescription/>
         <CoffeesCard/>
-
         </main>
     )
 }

@@ -9,11 +9,12 @@ export const PaymentTitleContainer = styled(addressAndPaymentBase)`
 
 export const PaymentType = styled.div`
     display: flex;
+    justify-content: space-between;
     gap: .75rem;
     background-color: ${props=> props.color};
     
    div{
-        width: 100%;
+    width: 100%;
         padding: 1rem 0 1rem 1rem;
         background-color: ${props => props.theme["base-button"]};
         border-radius: 6px;
@@ -43,5 +44,13 @@ export const PaymentType = styled.div`
         font-size: .75rem;
         text-transform: uppercase;
         line-height: 1.6;
+    }
+
+    @media only screen and (max-width: 642px) {
+        flex-wrap: wrap;
+
+        div{
+            width: 100%;
+        }
     }
 `
