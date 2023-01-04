@@ -1,3 +1,4 @@
+import { differenceInSeconds, formatDistanceToNow, intervalToDuration } from "date-fns"
 import { createContext, ReactNode, useState, useEffect } from "react"
 
 const coffeesAvailable = [
@@ -45,6 +46,7 @@ interface CoffeesCartContextType {
     paymentMethod: PaymentMethod,
     handleDecreaseOne: handleIncreaseAndDescrease,
     handleIncreaseOne: handleIncreaseAndDescrease,
+    message: false | true | null;
     handleAddToCart: (id: string, name: string) => void,
     handlePaymentMethod: (value: PaymentMethod)=> void,
     handleRemoveFromCart: (id: string)=> void
@@ -68,6 +70,8 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
     const [totalCoffees, setTotalCoffees] = useState(0)
 
     const [totalCoffeesPrice, setTotalCoffeesPrice] = useState(0)
+
+    const [message, setMessage] = useState<true | false | null>(null)
 
     function handleIncreaseOne(id: string, type: string) {
 
@@ -102,12 +106,13 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
     }
 
     function handleAddToCart(id: string, name: string) {
-
         const findCoffee = coffeesToBuy.find(coffee => coffee.id === id)
-
         const coffeeExistsInCart = coffeesCart.find(coffee => coffee.id === id)
 
+
         if (findCoffee && !coffeeExistsInCart) {
+            message !== null ? setMessage(null) : false
+            setMessage(true)
             setCoffeesCart(state => [...state, { id, quantity: findCoffee.quantity, name, price: findCoffee.price }])
             setCoffeesToBuy(state => state.map((coffee) => {
                 if (coffee.id === id && coffee.quantity > 1) {
@@ -115,8 +120,10 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
                 } else { return coffee }
             }))
         } else {
+            message !== null ? setMessage(null) : false
             setCoffeesCart(state => state.map((coffee) => {
                 if (coffee.id === id && findCoffee && coffeeExistsInCart) {
+                    setMessage(coffee.quantity + findCoffee.quantity <= 20 ? true : false)
                     return { ...coffee, quantity: coffee.quantity + findCoffee.quantity <= 20 ? coffee.quantity + findCoffee.quantity : 20 }
                 } else { return coffee }
             }))
@@ -126,8 +133,8 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
                     return { ...coffee, quantity: 1 }
                 } else { return coffee }
             }))
-
         }
+
     }
 
     function handleRemoveFromCart(id: string){
@@ -146,11 +153,35 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
         }
     }
 
+    useEffect(()=>{
+        let intervalMessage: number
+        if(message !== null){
+            const date = new Date()
+            intervalMessage = setInterval(()=> {
+                const secondsDifference = differenceInSeconds(
+                    new Date(),
+                    date,
+                )
+
+                if(secondsDifference >=4 && message !== null){
+                    clearInterval(intervalMessage)
+                    setMessage(null)
+                }
+            }, 1000)
+    
+            if(message === null){
+                clearInterval(intervalMessage)
+            }
+
+
+        }
+    }, [message])
+    
     useEffect(() => {
         if (coffeesCart.length > 0) {
             const allQuantity = coffeesCart.map((elements) => { return elements.quantity }).reduce((total, currentValue) => total + currentValue)
             const priceCalc= coffeesCart.map((element) => { return element.price*element.quantity}).reduce((total, currentValue) => total + currentValue)
-           const priceFinal = Number(priceCalc.toFixed(2))
+            const priceFinal = Number(priceCalc.toFixed(2))
 
             setTotalCoffees(allQuantity)
             setTotalCoffeesPrice(priceFinal)
@@ -160,10 +191,10 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
             setTotalCoffees(0)
             setTotalCoffeesPrice(0)
         }
-    }, [coffeesCart, totalCoffeesPrice, totalCoffees])
+    }, [coffeesCart, totalCoffeesPrice, totalCoffees, message])
 
     return (
-        <CoffeesCartContext.Provider value={{ coffeesToBuy, paymentMethod, handlePaymentMethod, handleRemoveFromCart, totalCoffeesPrice, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
+        <CoffeesCartContext.Provider value={{ coffeesToBuy, message, paymentMethod, handlePaymentMethod, handleRemoveFromCart, totalCoffeesPrice, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
             {children}
         </CoffeesCartContext.Provider>
     )
