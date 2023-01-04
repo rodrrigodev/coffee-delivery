@@ -17,6 +17,8 @@ export function SelectedCoffees() {
                 coffeesCart.map((coffee) => {
                     return (
                         <CoffeeOrderContainer key={coffee.id}>
+
+                            <div>
                             <img src={`https://raw.githubusercontent.com/rodrrigodev/coffee-delivery/main/src/assets/${coffee.id}.png`} alt="" />
 
                             <ButtonAndTitleContainer>
@@ -55,6 +57,7 @@ export function SelectedCoffees() {
                                     </span>
                                 </div>
                             </ButtonAndTitleContainer>
+                            </div>
                             <CoffeePrice>R$ {formatPrice(coffee.price)}</CoffeePrice>
                         </CoffeeOrderContainer>
                     )

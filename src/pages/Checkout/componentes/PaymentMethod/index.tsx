@@ -10,7 +10,7 @@ export function PaymentMethod(){
     const creditCard = paymentMethod === "creditCard" && totalCoffees > 0 ? "active" : "null"
     const debitCard = paymentMethod === "debitCard" && totalCoffees > 0 ? "active" : "null"
     const money = paymentMethod === "money" && totalCoffees > 0  ? "active" : "null"
-
+console.log(creditCard)
     return(
         <BackgroundCardCollor>
         <PaymentTitleContainer>

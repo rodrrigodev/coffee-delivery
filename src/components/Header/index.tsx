@@ -20,13 +20,13 @@ export function Header() {
                 </span>
 
 
-<div>
+                <div>
 
-                <Link to="/checkout" title="Carrinho">
-                    <ShoppingCart size={24} weight="fill" />
-                {totalCoffees ? <span>{totalCoffees}</span> : '' }
-                </Link>
-</div>
+                    <Link to="/checkout" title="Carrinho">
+                        <ShoppingCart size={24} weight="fill" />
+                        {totalCoffees ? <span>{totalCoffees}</span> : ''}
+                    </Link>
+                </div>
             </NavActionsContainer>
         </HeaderContainer>
     )

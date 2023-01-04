@@ -16,10 +16,16 @@ export const InputDivContainer = styled.div`
         font-size: .75rem;
         color: ${props => props.theme["base-label"]};
     }
+
+    @media only screen and (max-width: 576px) {
+        flex-direction: column;
+
+        input, div{
+            width: 100%;
+        }
+    }
+
 `
-
-
-
 const inputBase = styled.input`
     font-size: .875rem;
     line-height: 1.3;
@@ -37,7 +43,6 @@ const inputBase = styled.input`
     &:focus{
         box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-dark']};
     }
-
 `
 
 export const InputCity = styled(inputBase)`
@@ -54,6 +59,10 @@ export const InputComplement = styled(inputBase)`
 
 export const InputZipCode = styled(inputBase)`
     width: calc(40% - 1.5rem);
+
+    @media only screen and (max-width: 576px) {
+            width: 100%;
+    }
 `
 
 export const InputNumber = styled(inputBase)`
