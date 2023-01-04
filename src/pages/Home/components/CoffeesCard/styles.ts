@@ -148,3 +148,25 @@ export const PlusOrMinus = styled.div`
     }
 }
 `
+
+const messageBase = styled.span`
+    position: fixed;
+    right: 1%;
+    top: 2%;
+    font-size: .875rem;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    padding: .5rem;
+    border-radius: 6px;
+`
+
+export const SuccessMessage = styled(messageBase)`
+    background-color: ${props=> props.theme["green-light"]};
+    color: ${props=> props.theme["green-dark"]};
+`
+
+export const LimitMessage = styled(messageBase)`
+    background-color: ${props=> props.theme["red-light"]};
+    color: ${props=> props.theme["red-dark"]};
+`
