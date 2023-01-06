@@ -19,7 +19,7 @@ export function Checkout() {
     const schemaValidation = zod.object({
         zipCode: zod.number({ invalid_type_error: "Somente números são aceitos no CEP." })
         .superRefine((val, ctx)=>{ if(val.toString().length !== 8){ ctx.addIssue({code: zod.ZodIssueCode.custom,
-        message: "Deve conter no minimo 8 números.", fatal: true}) }}),
+        message: "CEP deve conter no minimo 8 números.", fatal: true}) }}),
         street: zod.string().min(4, { message: "O nome da rua deve conter no mínimo 4 caracteres." })
         .max(40, { message: "O nome da rua não pode ultrapassar 40 caracteres" }),
         number: zod.number({ invalid_type_error: "Somente números são aceitos na numeração da casa." }),
