@@ -38,6 +38,17 @@ type handleIncreaseAndDescrease = (id: string, type: string) => void
 
 type PaymentMethod = "creditCard" | "debitCard" | "money" | null
 
+interface AddressFormat{
+    complement?: string | undefined,
+    number: number,
+    paymentMethod: string,
+    zipCode: number,
+    street: string,
+    district: string,
+    city: string,
+    uf: string,
+    time: number
+}
 interface CoffeesCartContextType {
     coffeesToBuy: coffeesToBuyType,
     totalCoffees: number,
@@ -46,10 +57,12 @@ interface CoffeesCartContextType {
     paymentMethod: PaymentMethod,
     handleDecreaseOne: handleIncreaseAndDescrease,
     handleIncreaseOne: handleIncreaseAndDescrease,
-    message: false | true | null;
+    message: false | true | null,
+    address: AddressFormat | undefined,
     handleAddToCart: (id: string, name: string) => void,
     handlePaymentMethod: (value: PaymentMethod)=> void,
-    handleRemoveFromCart: (id: string)=> void
+    handleRemoveFromCart: (id: string)=> void,
+    handleNewAddress: (address: AddressFormat)=> void
 }
 
 export const CoffeesCartContext = createContext({} as CoffeesCartContextType)
@@ -65,13 +78,16 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
 
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(null)
 
-    const [coffeesCart, setCoffeesCart] = useState<CoffeesCart[]>([])
+    const cartIsEmpty = localStorage.getItem("@coffee-delivery:coffees-cart-1.0.0")
+    const [coffeesCart, setCoffeesCart] = useState<CoffeesCart[]>(cartIsEmpty ? JSON.parse(cartIsEmpty): [])
 
     const [totalCoffees, setTotalCoffees] = useState(0)
 
     const [totalCoffeesPrice, setTotalCoffeesPrice] = useState(0)
 
     const [message, setMessage] = useState<true | false | null>(null)
+
+    const [address, setAddress] = useState<AddressFormat | undefined>(undefined)
 
     function handleIncreaseOne(id: string, type: string) {
 
@@ -106,6 +122,10 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
     }
 
     function handleAddToCart(id: string, name: string) {
+        if(address){
+            setAddress(undefined)
+            setPaymentMethod(null)
+        }
         const findCoffee = coffeesToBuy.find(coffee => coffee.id === id)
         const coffeeExistsInCart = coffeesCart.find(coffee => coffee.id === id)
 
@@ -172,10 +192,12 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
             if(message === null){
                 clearInterval(intervalMessage)
             }
-
-
         }
-    }, [message])
+
+        if(address){
+            setCoffeesCart([])
+        }
+    }, [message, address])
     
     useEffect(() => {
         if (coffeesCart.length > 0) {
@@ -191,10 +213,17 @@ export function CoffeesCartContextProvider({ children }: CoffeesCartContextProvi
             setTotalCoffees(0)
             setTotalCoffeesPrice(0)
         }
+
+        const coffeesCartJSON = JSON.stringify(coffeesCart)
+        localStorage.setItem("@coffee-delivery:coffees-cart-1.0.0", coffeesCartJSON)
     }, [coffeesCart, totalCoffeesPrice, totalCoffees, message])
 
+    function handleNewAddress(address:AddressFormat){
+        setAddress(address)
+    }
+
     return (
-        <CoffeesCartContext.Provider value={{ coffeesToBuy, message, paymentMethod, handlePaymentMethod, handleRemoveFromCart, totalCoffeesPrice, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
+        <CoffeesCartContext.Provider value={{ handleNewAddress, address, coffeesToBuy, message, paymentMethod, handlePaymentMethod, handleRemoveFromCart, totalCoffeesPrice, coffeesCart, handleAddToCart, handleDecreaseOne, handleIncreaseOne, totalCoffees }}>
             {children}
         </CoffeesCartContext.Provider>
     )
