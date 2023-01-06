@@ -6,13 +6,20 @@ export const Background = styled.div`
     padding: 5.75rem 0;
     background-image: url(${background});
     background-repeat: round;   
+
+    @media only screen and (max-width: 534px) {
+        padding: 1rem 0 3rem 0;
+        background-image: none;
+        background-repeat: none;  
+    }
 `
 
 export const CoffeeDescription = styled(containerPatternSizeBase)`
     margin: 0 auto;
     
     section{
-        width: 36.75rem;
+        max-width: 36.75rem;
+        width: 100%;
     
         strong{
             font-family: "Baloo 2";
@@ -20,6 +27,10 @@ export const CoffeeDescription = styled(containerPatternSizeBase)`
             font-size: 3rem;
             color: ${props => props.theme["base-title"]};
             line-height: 1.3;
+
+            @media only screen and (max-width: 534px) {
+                font-size: 2rem;
+    }
         }
 
         p{
@@ -27,16 +38,30 @@ export const CoffeeDescription = styled(containerPatternSizeBase)`
             font-size: 1.25rem;
             line-height: 1.3;
             margin: 1rem 0 4.125rem 0;
+
+        @media only screen and (max-width: 768px) {
+            margin-bottom: 2rem;
+        }
         }
 }
 
     img{
         width: 100%;
+
+        @media only screen and (max-width: 768px) {
+        display: none;
     }
+    }
+
+    @media only screen and (max-width: 768px) {
+        justify-content: center;
+    }
+
 `
 
 export const IconDescriptions = styled.div`
-    width: 35.4375rem;
+    max-width: 35.4375rem;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 1rem .5rem;
@@ -74,4 +99,9 @@ export const IconDescriptions = styled.div`
             border-radius: 50%;
         }
     }
+
+    @media only screen and (max-width: 534px) {
+        flex-direction: column;
+    }
+    
 `

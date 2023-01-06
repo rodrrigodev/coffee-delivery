@@ -4,7 +4,6 @@ import { containerPatternSizeBase } from "../Home/styles";
 export const SuccessContainer = styled(containerPatternSizeBase)`
     margin: 5rem auto;
     gap: 2.5rem .2rem;
-    flex-wrap: wrap;
 
     strong{
         font-family: 'Baloo 2';
@@ -12,12 +11,25 @@ export const SuccessContainer = styled(containerPatternSizeBase)`
         font-size: 2rem;
         line-height: 1.3;
         color: ${props=> props.theme["yellow-dark"]};
+
+    @media only screen and (max-width: 342px) {
+        font-size: 1.8rem;
+    }
     }
 
     p{
         font-size: 1.25rem;
         line-height: 1.3;
         color: ${props=> props.theme["base-subtitle"]};
+    }
+
+    img{
+        max-width: 30rem;
+        width: 100%;
+    }
+
+    @media only screen and (max-width: 927px) {
+        flex-wrap: wrap;
     }
 `
 
