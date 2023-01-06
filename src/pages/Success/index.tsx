@@ -1,8 +1,12 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
 import { AdrressDeliveryInfoContainer, SuccessContainer } from "./styles";
 import deliveryMan from "../../assets/deliveryMan.png"
+import { useContext } from "react";
+import { CoffeesCartContext } from "../../contexts/CoffeesCartContext";
 
 export function Success() {
+    const { address } = useContext(CoffeesCartContext)
+    const timerTwo = address?.time ? address.time + 10 : 0
     return (
         <main>
             <SuccessContainer>
@@ -16,8 +20,8 @@ export function Success() {
                                 <MapPin size={16} weight="fill" id="MapPin" />
                             </span>
                             <div>
-                                <p>Entrega em <b>Rua João Daniel Martinelli, 102</b></p>
-                                <p>Farrapos - Porto Alegre, RS</p>
+                                <p>Entrega em <b>{address?.street}, {address?.number}</b></p>
+                                <p>{address?.district} - {address?.city}, {address?.uf}</p>
                             </div>
                         </div>
 
@@ -27,7 +31,7 @@ export function Success() {
                             </span>
                             <div>
                                 <p>Previsão de entrega</p>
-                                <b>20 min - 30 min</b>
+                                <b>{address?.time} min - {timerTwo} min</b>
                             </div>
                         </div>
 
@@ -37,7 +41,7 @@ export function Success() {
                             </span>
                             <div>
                                 <p>Pagamento na entrega</p>
-                                <b>Cartão de Crédito</b>
+                                <b>{address?.paymentMethod}</b>
                             </div>
                         </div>
                     </AdrressDeliveryInfoContainer>

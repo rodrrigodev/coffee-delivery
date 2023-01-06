@@ -4,9 +4,8 @@ import { CoffeesCard } from "./components/CoffeesCard"
 export function Home() {
     return (
         <main>
-
-        <CoffeeDeliveryDescription/>
-        <CoffeesCard/>
+            <CoffeeDeliveryDescription />
+            <CoffeesCard />
         </main>
     )
 }

@@ -7,8 +7,8 @@ import { CoffeeCard, CoffeeCardContainer, CoffeesContainer, SuccessMessage, Limi
 
 export function CoffeesCard() {
 
-    const { coffeesToBuy, message, handleIncreaseOne, handleDecreaseOne, handleAddToCart } = useContext(CoffeesCartContext)
-
+    const { coffeesToBuy, message, handleIncreaseOne, handleDecreaseOne, handleAddToCart, handleNewAddress } = useContext(CoffeesCartContext)
+        
     return (
         <CoffeesContainer>
 
@@ -16,19 +16,19 @@ export function CoffeesCard() {
 
             <CoffeeCardContainer>
 
-                {message &&(
+                {message && (
                     <SuccessMessage>
                         <CheckCircle size={24} id="CheckCircle" />
                         Adicionado ao carrinho!
                     </SuccessMessage>
                 )}
 
-                {!message && message !== null &&(
+                {!message && message !== null && (
                     <LimitMessage>
                         <WarningCircle size={24} id="WarningCircle" />
                         Limite 20 cafés para cada opção
                     </LimitMessage>
-                ) }
+                )}
 
                 {coffeesToBuy.map((coffee) => {
 
@@ -87,7 +87,7 @@ export function CoffeesCard() {
             </CoffeeCardContainer>
 
             <ButtonToTop onClick={scrollToTop}>
-            <ArrowCircleUp size={34} />
+                <ArrowCircleUp size={34} />
             </ButtonToTop>
 
         </CoffeesContainer>

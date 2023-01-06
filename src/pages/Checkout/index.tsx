@@ -8,27 +8,34 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { FormProvider, useForm } from "react-hook-form";
 import { ButtonToTop } from "../Home/components/CoffeesCard/styles";
-import { ArrowCircleUp } from "phosphor-react";
+import { ArrowCircleUp, CreditCard } from "phosphor-react";
 import { scrollToTop } from "../../utils/scroolToTop";
+import { useNavigate } from "react-router-dom";
 
 export function Checkout() {
-    const { coffeesCart, totalCoffees, paymentMethod } = useContext(CoffeesCartContext)
+    const { coffeesCart, totalCoffees, paymentMethod, handleNewAddress } = useContext(CoffeesCartContext)
     const paymentDefault = paymentMethod ? paymentMethod : "zero"
-    
+    const navigate = useNavigate()
     const schemaValidation = zod.object({
-        zipCode: zod.number({ invalid_type_error: "Somente números são aceitos no CEP." }).refine((value) => value.toLocaleString().length !== 8, { message: "Deve conter no minimo 8 números." }),
-        street: zod.string().min(4, { message: "O nome da rua deve conter no mínimo 4 caracteres." }).max(40, { message: "O nome da rua não pode ultrapassar 40 caracteres" }),
+        zipCode: zod.number({ invalid_type_error: "Somente números são aceitos no CEP." })
+        .superRefine((val, ctx)=>{ if(val.toString().length !== 8){ ctx.addIssue({code: zod.ZodIssueCode.custom,
+        message: "Deve conter no minimo 8 números.", fatal: true}) }}),
+        street: zod.string().min(4, { message: "O nome da rua deve conter no mínimo 4 caracteres." })
+        .max(40, { message: "O nome da rua não pode ultrapassar 40 caracteres" }),
         number: zod.number({ invalid_type_error: "Somente números são aceitos na numeração da casa." }),
         complement: zod.string().optional(),
-        district: zod.string().min(4, { message: "O nome do bairro deve conter no mínimo 4 caracteres." }).max(30, { message: "O nome do bairro deve conter no máximo 30 caracteres." }),
-        city: zod.string().min(4, { message: "O nome da cidade deve conter no mínimo 4 caracteres." }).max(25, { message: "O nome da cidade deve conter no máximo 25 caracteres." }),
-        uf: zod.string().min(2, { message: "O nome da UF deve conter no mínimo 2 caracteres." }).max(2, { message: "O nome da UF deve conter no máximo 2 caracteres." }),
+        district: zod.string().min(4, { message: "O nome do bairro deve conter no mínimo 4 caracteres." })
+        .max(30, { message: "O nome do bairro deve conter no máximo 30 caracteres." }),
+        city: zod.string().min(4, { message: "O nome da cidade deve conter no mínimo 4 caracteres." })
+        .max(25, { message: "O nome da cidade deve conter no máximo 25 caracteres." }),
+        uf: zod.string().min(2, { message: "O nome da UF deve conter no mínimo 2 caracteres." })
+        .max(2, { message: "O nome da UF deve conter no máximo 2 caracteres." }),
         paymentMethod: zod.string().min(5, {message: "Selecione o método de pagamento"}).default(paymentDefault)
     })
     
-    type onSubmitFormData = zod.infer<typeof schemaValidation>
+    type AnddressFormData = zod.infer<typeof schemaValidation>
 
-    const newAddress = useForm<onSubmitFormData>({
+    const newAddress = useForm<AnddressFormData>({
         resolver: zodResolver(schemaValidation),
         defaultValues: {
             complement: "",
@@ -39,9 +46,21 @@ export function Checkout() {
 
     const { handleSubmit, formState: { errors } } = newAddress
 
-    function handleCreateNewAddress(data: onSubmitFormData) {
-        console.log(data)
+    function handleCreateNewAddress(data: AnddressFormData) {
+        let paymentType;
+        if(data.paymentMethod === "creditCard"){
+            paymentType = "Cartão de Crédito"
+        }
+        if(data.paymentMethod === "debitCard"){
+            paymentType = "Cartão de Débito"
+        }
+        if(data.paymentMethod === "money"){
+            paymentType = "Dinheiro"
+        }
 
+        handleNewAddress({city: data.city, district: data.district, number: data.number, paymentMethod: paymentType? paymentType : "Dinheiro",
+        street: data.street, time: (totalCoffees * 3) + 20, uf: data.uf, zipCode: data.zipCode, complement: data.complement})
+        navigate("/success")
     }
 
     return (
