@@ -11,6 +11,7 @@ export const CoffeesContainer = styled(containerPatternSizeBase)`
         font-size: 2rem;
         color: ${props => props.theme["base-subtitle"]};
         line-height: 1.3;
+        /* margin-bottom: 2.0625rem; */
     }
 `
 
@@ -21,7 +22,7 @@ export const CoffeeCardContainer = styled.div`
 `
 
 export const CoffeeCard = styled.div`
-    margin-top: calc(2.5rem - 1rem);
+    margin-top: 3.375rem;
     display: flex;
     flex-direction: column;
     align-items: center;
