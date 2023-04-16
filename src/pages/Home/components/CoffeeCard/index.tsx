@@ -32,7 +32,7 @@ export function CoffeeCard(coffee: coffeeProps) {
     <CoffeeCardContainer>
       <div>
         <img
-          src={`https://raw.githubusercontent.com/rodrrigodev/coffee-delivery/main/src/assets/${coffee.id}.png`}
+          src={`https://raw.githubusercontent.com/rodrrigodev/coffee-delivery/master/src/assets/${coffee.id}.png`}
           alt=""
         />
       </div>
