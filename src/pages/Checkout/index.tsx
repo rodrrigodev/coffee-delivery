@@ -99,7 +99,6 @@ export function Checkout() {
       navigate('/success')
     }
   }
-  console.log(errors)
 
   return (
     <main>
@@ -123,17 +122,27 @@ export function Checkout() {
             <SelectedCoffees />
 
             <ErrorsContainer>
-              {errors.zipCode && <p>{errors.zipCode.message}</p>}
+              {errors.zipCode && !!coffeesCart.length && (
+                <p>{errors.zipCode.message}</p>
+              )}
 
-              {errors.street && <p>{errors.street.message}</p>}
+              {errors.street && !!coffeesCart.length && (
+                <p>{errors.street.message}</p>
+              )}
 
-              {errors.number && <p>{errors.number.message}</p>}
+              {errors.number && !!coffeesCart.length && (
+                <p>{errors.number.message}</p>
+              )}
 
-              {errors.district && <p>{errors.district.message}</p>}
+              {errors.district && !!coffeesCart.length && (
+                <p>{errors.district.message}</p>
+              )}
 
-              {errors.city && <p>{errors.city.message}</p>}
+              {errors.city && !!coffeesCart.length && (
+                <p>{errors.city.message}</p>
+              )}
 
-              {errors.uf && <p>{errors.uf.message}</p>}
+              {errors.uf && !!coffeesCart.length && <p>{errors.uf.message}</p>}
 
               {!paymentMethod.length && checkPaymentMethod && (
                 <p>{'Selecione o método de pagamento!'}</p>

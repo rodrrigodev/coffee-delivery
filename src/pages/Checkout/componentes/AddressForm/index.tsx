@@ -17,22 +17,21 @@ export function AddressForm() {
   return (
     <InputContainer>
       <InputZipCode
-        id="zipCode"
+        type="number"
         placeholder="CEP"
         {...register('zipCode', { valueAsNumber: true })}
       />
 
-      <InputStreet id="street" placeholder="Rua" {...register('street')} />
+      <InputStreet placeholder="Rua" {...register('street')} />
 
       <InputDivContainer>
         <InputNumber
-          id="number"
+          type="number"
           placeholder="Número"
           {...register('number', { valueAsNumber: true })}
         />
         <div>
           <InputComplement
-            id="complement"
             placeholder="Complemento"
             {...register('complement')}
           />
@@ -41,13 +40,9 @@ export function AddressForm() {
       </InputDivContainer>
 
       <InputDivContainer>
-        <InputDistrict
-          id="district"
-          placeholder="Bairro"
-          {...register('district')}
-        />
-        <InputCity id="city" placeholder="Cidade" {...register('city')} />
-        <InputUf id="uf" placeholder="UF" {...register('uf')} />
+        <InputDistrict placeholder="Bairro" {...register('district')} />
+        <InputCity placeholder="Cidade" {...register('city')} />
+        <InputUf placeholder="UF" {...register('uf')} />
       </InputDivContainer>
     </InputContainer>
   )

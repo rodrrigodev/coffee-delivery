@@ -24,7 +24,7 @@ export function CoffeeCardResume({ id, amount }: CoffeeCardResumeProps) {
     <CoffeeOrderContainer>
       <div>
         <img
-          src={`https://raw.githubusercontent.com/rodrrigodev/coffee-delivery/main/src/assets/${id}.png`}
+          src={`https://raw.githubusercontent.com/rodrrigodev/coffee-delivery/master/src/assets/${id}.png`}
           alt=""
         />
 
