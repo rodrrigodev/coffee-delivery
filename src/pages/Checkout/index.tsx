@@ -144,9 +144,11 @@ export function Checkout() {
 
               {errors.uf && !!coffeesCart.length && <p>{errors.uf.message}</p>}
 
-              {!paymentMethod.length && checkPaymentMethod && (
-                <p>{'Selecione o método de pagamento!'}</p>
-              )}
+              {!paymentMethod.length &&
+                checkPaymentMethod &&
+                !!coffeesCart.length && (
+                  <p>{'Selecione o método de pagamento!'}</p>
+                )}
             </ErrorsContainer>
           </div>
         </CheckoutContainer>
